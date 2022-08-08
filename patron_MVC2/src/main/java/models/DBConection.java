@@ -152,14 +152,18 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cliente;";
+			String querySl = "SELECT * FROM Videos;";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-				ModelVideo cliente=new ModelVideo();
-				videos.add(cliente);
+				ModelVideo video=new ModelVideo();
+				video.setId(resultSet.getInt(1));
+				video.setTitle(resultSet.getString(2));
+				video.setDirector(resultSet.getString(3));
+				video.setCli_id(resultSet.getInt(4));
+				videos.add(video);
 			}
 			
 			closeConnection();
