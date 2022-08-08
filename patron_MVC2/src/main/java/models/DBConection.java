@@ -253,7 +253,7 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cliente where id="+id+";";
+			String querySl = "SELECT * FROM Videos where id="+id+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);			
