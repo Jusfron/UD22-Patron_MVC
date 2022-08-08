@@ -23,9 +23,9 @@ public class ControllerCliente {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
-		viewCliente.addListenerBtnEditar(new ListenerEditar(viewCliente));
-		viewCliente.addListenerBtnBorrar(new ListenerBorrar(viewCliente));
-		viewCliente.addListenerBtnCrear(new ListenerCrear(viewCliente));
+		viewCliente.addListenerBtnEditar(new ListenerEditarCliente(viewCliente));
+		viewCliente.addListenerBtnBorrar(new ListenerBorrarCliente(viewCliente));
+		viewCliente.addListenerBtnCrear(new ListenerCrearCliente(viewCliente));
 		
 		viewCliente.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -73,11 +73,11 @@ public class ControllerCliente {
 
 }
 
-class ListenerEditar implements ActionListener {
+class ListenerEditarCliente implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerEditar(ViewTable viewCliente) {
+	public ListenerEditarCliente(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -95,11 +95,11 @@ class ListenerEditar implements ActionListener {
 	
 }
 
-class ListenerBorrar implements ActionListener {
+class ListenerBorrarCliente implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerBorrar(ViewTable viewCliente) {
+	public ListenerBorrarCliente(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -122,11 +122,11 @@ class ListenerBorrar implements ActionListener {
 	
 }
 
-class ListenerCrear implements ActionListener {
+class ListenerCrearCliente implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerCrear(ViewTable viewCliente) {
+	public ListenerCrearCliente(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
