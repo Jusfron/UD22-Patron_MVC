@@ -47,7 +47,7 @@ public class ControllerCliente {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewCliente viewCliente) {
-		ArrayList<ModelCliente> clientes = DBConection.getValues();
+		ArrayList<ModelCliente> clientes = DBConection.getValuesClientes();
 		viewCliente.getTable().setModel((new DefaultTableModel(
 				new Object[clientes.size()][6] ,
 				new String[] {
@@ -112,7 +112,7 @@ class ListenerBorrar implements ActionListener {
 			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewCliente, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), "Cliente")  ;
 				//Update table
 				ControllerCliente.fillTable(viewCliente);
 				

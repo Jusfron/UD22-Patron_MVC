@@ -19,7 +19,7 @@ public class ControllerFormCliente implements ActionListener{
 		
 		initialize();
 		
-		viewFormCliente.form(DBConection.getValue(id));
+		viewFormCliente.form(DBConection.getValueCliente(id));
 	}
 	
 	public ControllerFormCliente(Component clienteWindow) {
