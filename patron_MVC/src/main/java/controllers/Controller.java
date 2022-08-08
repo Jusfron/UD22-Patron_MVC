@@ -15,9 +15,9 @@ public class Controller {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
-		viewCliente.addListenerBtnEditar(new ListenerEditar());
-		viewCliente.addListenerBtnBorrar(new ListenerBorrar());
-		viewCliente.addListenerBtnCrear(new ListenerCrear());
+		viewCliente.addListenerBtnEditar(new ListenerEditar(viewCliente));
+		viewCliente.addListenerBtnBorrar(new ListenerBorrar(viewCliente));
+		viewCliente.addListenerBtnCrear(new ListenerCrear(viewCliente));
 	}
 	
 	public void startView() {
@@ -29,6 +29,13 @@ public class Controller {
 }
 
 class ListenerEditar implements ActionListener {
+	
+	ViewCliente viewCliente;
+	
+	public ListenerEditar(ViewCliente viewCliente) {
+		super();
+		this.viewCliente = viewCliente;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -39,6 +46,13 @@ class ListenerEditar implements ActionListener {
 }
 
 class ListenerBorrar implements ActionListener {
+	
+	ViewCliente viewCliente;
+	
+	public ListenerBorrar(ViewCliente viewCliente) {
+		super();
+		this.viewCliente = viewCliente;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -49,6 +63,13 @@ class ListenerBorrar implements ActionListener {
 }
 
 class ListenerCrear implements ActionListener {
+	
+	ViewCliente viewCliente;
+	
+	public ListenerCrear(ViewCliente viewCliente) {
+		super();
+		this.viewCliente = viewCliente;
+	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
