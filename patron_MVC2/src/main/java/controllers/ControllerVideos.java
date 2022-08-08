@@ -36,7 +36,7 @@ public class ControllerVideos {
 	}
 	
 	public void startView() {
-		viewTable.setTitle("Cliente");
+		viewTable.setTitle("Videos");
 		viewTable.setLocationRelativeTo(null);
 		viewTable.setVisible(true);
 		
