@@ -23,7 +23,7 @@ public class ControllerVideos {
 		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
 		viewTable.addListenerBtnBorrar(new ListenerBorrarVideos(viewTable));
 		viewTable.addListenerBtnCrear(new ListenerCrearVideos(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos());
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -137,15 +137,10 @@ class ListenerCrearVideos implements ActionListener {
 
 class ListenerCambiarVideos implements ActionListener {
 	
-	ViewTable viewTable;
-	
-	public ListenerCambiarVideos(ViewTable viewTable) {
-		super();
-		this.viewTable = viewTable;
-	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		ViewTable viewTable = new ViewTable();
 		ControllerCliente controllerCliente = new ControllerCliente(viewTable);
 		controllerCliente.startView();
 		viewTable.setTitle("Cliente");
