@@ -9,6 +9,11 @@ public class Controller {
 	ViewCliente viewCliente;
 	
 	public Controller (ModelCliente modelCliente, ViewCliente viewCliente) {
+		this.modelCliente = modelCliente;
+		this.viewCliente = viewCliente;
+	}
+	
+	public void startView() {
 		
 	}
 
