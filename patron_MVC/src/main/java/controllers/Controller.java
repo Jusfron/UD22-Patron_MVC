@@ -69,7 +69,9 @@ class ListenerBorrar implements ActionListener {
 		if(viewCliente.getTable().getSelectedRow() == -1) {
 			JOptionPane.showMessageDialog(viewCliente, "No row selected");
 		} else {
-			
+			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
+				JOptionPane.showMessageDialog(viewCliente, "No row selected");
+			}
 		}
 	}
 	
