@@ -16,7 +16,7 @@ public class DBConection {
 	private static String db="UD22";
 	static Connection connection;
 	
-
+	// Function to create the connection to the database
 	public static void connection() {
 		
 		try {
@@ -30,7 +30,8 @@ public class DBConection {
 			System.out.println(e);
 		}		
 	}
-	
+
+	// Function to close the connection to the database
 	public static void closeConnection() {
 		try {
 			connection.close();
@@ -40,6 +41,7 @@ public class DBConection {
 		}
 	}
 	
+	// Function to insert records into the table "Cliente".
 	public static void insertData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
 		
 		try {
@@ -61,6 +63,7 @@ public class DBConection {
 		
 	}
 	
+	// Function to insert records into the table "Videos".
 	public static void insertData(int id, String title, String director, int clientId) {
 		try {
 			connection();
@@ -80,6 +83,7 @@ public class DBConection {
 		}
 	}
 
+	// Function for delete records of any table
 	public static void deleteData(int id, String table) {
 
 		try {
@@ -103,6 +107,7 @@ public class DBConection {
 		
 	}
 	
+	// Function for list all the records of the table "Client"
 	public static ArrayList<ModelCliente> getValuesClientes() {
 		ArrayList<ModelCliente> clientes = new ArrayList<>();
 		
@@ -137,6 +142,7 @@ public class DBConection {
 		
 	}
 	
+	// Function for list all de records of the table "Video"
 	public static ArrayList<ModelVideo> getValuesVideos() {
 		ArrayList<ModelVideo> videos = new ArrayList<>();
 		
@@ -165,6 +171,7 @@ public class DBConection {
 		
 	}
 
+	// Function to upadate records into the table "Cliente".
 	public static void updateData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
 		try {
 			connection();
@@ -184,6 +191,7 @@ public class DBConection {
 		}
 	}
 	
+	// Function to insert the records into the table "Cliente".
 	public static void updateData(int id, String title, String director, int clientId) {
 		try {
 			connection();
@@ -253,7 +261,7 @@ public class DBConection {
 		return video;
 	}
 	
-	public static int lastId() {
+	public static int lastId(String table) {
 		int id=0;
 		try {
 			connection();
@@ -261,7 +269,7 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cliente;";
+			String querySl = "SELECT * FROM "+table+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
