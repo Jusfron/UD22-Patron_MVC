@@ -2,27 +2,39 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
 import models.ModelCliente;
 import views.ViewCliente;
 import views.ViewFormCliente;
 
-public class Controller {
+public class ControllerCliente {
 	
 	ModelCliente modelCliente;
 	ViewCliente viewCliente;
 	
-	public Controller (ModelCliente modelCliente, ViewCliente viewCliente) {
+	public ControllerCliente (ModelCliente modelCliente, ViewCliente viewCliente) {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
 		viewCliente.addListenerBtnEditar(new ListenerEditar(viewCliente));
 		viewCliente.addListenerBtnBorrar(new ListenerBorrar(viewCliente));
 		viewCliente.addListenerBtnCrear(new ListenerCrear(viewCliente));
+		
+		viewCliente.addComponentListener(new ComponentAdapter() {
+			   public void componentHidden(ComponentEvent e) {
+			      /* code run when component hidden*/
+			   }
+			   public void componentShown(ComponentEvent e) {
+				   fillTable(viewCliente);
+			   }
+			});
 	}
 	
 	public void startView() {
@@ -30,10 +42,25 @@ public class Controller {
 		viewCliente.setLocationRelativeTo(null);
 		viewCliente.setVisible(true);
 		
-		fillTable(DBConection.getValues());
+		fillTable(viewCliente);
 	}
 	
-	public void fillTable(ArrayList<ModelCliente> clientes) {
+	@SuppressWarnings("serial")
+	public static void fillTable(ViewCliente viewCliente) {
+		ArrayList<ModelCliente> clientes = DBConection.getValues();
+		viewCliente.getTable().setModel((new DefaultTableModel(
+				new Object[clientes.size()][6] ,
+				new String[] {
+					"id", "nombre", "apellido", "direccion", "dni", "fecha"
+				}) {
+
+			    @Override
+			    public boolean isCellEditable(int row, int column) {
+			       //all cells false
+			       return false;
+			    }
+			}));
+		
 		for(int i = 0; i < clientes.size(); i++) {
 			viewCliente.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
 			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
@@ -61,9 +88,7 @@ class ListenerEditar implements ActionListener {
 			JOptionPane.showMessageDialog(viewCliente, "No row selected");
 		} else {
 			viewCliente.setVisible(false);
-			ViewFormCliente viewFormCliente = new ViewFormCliente();
-			viewCliente.setLocationRelativeTo(viewCliente);
-			viewFormCliente.setVisible(true);
+			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
 		}
 		
 	}
@@ -88,6 +113,9 @@ class ListenerBorrar implements ActionListener {
 				JOptionPane.showMessageDialog(viewCliente, "No row selected");
 			} else {
 				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
+				//Update table
+				ControllerCliente.fillTable(viewCliente);
+				
 			}
 		}
 	}
@@ -106,9 +134,7 @@ class ListenerCrear implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewCliente.setVisible(false);
-		ViewFormCliente viewFormCliente = new ViewFormCliente();
-		viewCliente.setLocationRelativeTo(viewCliente);
-		viewFormCliente.setVisible(true);
+		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(viewCliente);
 	}
 	
 }
