@@ -10,23 +10,26 @@ import views.ViewFormCliente;
 public class ControllerFormCliente implements ActionListener{
 	
 	private ViewFormCliente viewFormCliente;
+	private Component clienteWindow;
 	private int id = -1;
 	
 	public ControllerFormCliente(int id, Component clienteWindow) {
 		this.id = id;
+		this.clienteWindow = clienteWindow;
 		
-		ViewFormCliente viewFormCliente = new ViewFormCliente();
-		viewFormCliente.setLocationRelativeTo(clienteWindow);
-		viewFormCliente.setVisible(true);
+		initialize();
 		
 		viewFormCliente.form(DBConection.getValue(id));
-		
-		viewFormCliente.getBtnGuardar().addActionListener(this);
 	}
 	
 	public ControllerFormCliente(Component clienteWindow) {
+		this.clienteWindow = clienteWindow;
 		
-		ViewFormCliente viewFormCliente = new ViewFormCliente();
+		initialize();
+	}
+	
+	private void initialize() {
+		viewFormCliente = new ViewFormCliente();
 		viewFormCliente.setLocationRelativeTo(clienteWindow);
 		viewFormCliente.setVisible(true);
 		
@@ -36,13 +39,15 @@ public class ControllerFormCliente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(id, viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
+			DBConection.insertData(DBConection.lastId(), viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
 					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
 		} else {
 			DBConection.updateData(id, viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
 					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
 		}
 		
+		clienteWindow.setVisible(true);
+		viewFormCliente.dispose();
 	}
 
 }

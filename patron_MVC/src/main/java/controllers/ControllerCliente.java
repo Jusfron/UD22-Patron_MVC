@@ -2,6 +2,8 @@ package controllers;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
@@ -15,7 +17,7 @@ import views.ViewFormCliente;
 public class ControllerCliente {
 	
 	ModelCliente modelCliente;
-	static ViewCliente viewCliente;
+	ViewCliente viewCliente;
 	
 	public ControllerCliente (ModelCliente modelCliente, ViewCliente viewCliente) {
 		this.modelCliente = modelCliente;
@@ -24,6 +26,15 @@ public class ControllerCliente {
 		viewCliente.addListenerBtnEditar(new ListenerEditar(viewCliente));
 		viewCliente.addListenerBtnBorrar(new ListenerBorrar(viewCliente));
 		viewCliente.addListenerBtnCrear(new ListenerCrear(viewCliente));
+		
+		viewCliente.addComponentListener(new ComponentAdapter() {
+			   public void componentHidden(ComponentEvent e) {
+			      /* code run when component hidden*/
+			   }
+			   public void componentShown(ComponentEvent e) {
+				   fillTable(viewCliente);
+			   }
+			});
 	}
 	
 	public void startView() {
@@ -31,11 +42,11 @@ public class ControllerCliente {
 		viewCliente.setLocationRelativeTo(null);
 		viewCliente.setVisible(true);
 		
-		fillTable();
+		fillTable(viewCliente);
 	}
 	
 	@SuppressWarnings("serial")
-	public static void fillTable() {
+	public static void fillTable(ViewCliente viewCliente) {
 		ArrayList<ModelCliente> clientes = DBConection.getValues();
 		viewCliente.getTable().setModel((new DefaultTableModel(
 				new Object[clientes.size()][6] ,
@@ -77,7 +88,7 @@ class ListenerEditar implements ActionListener {
 			JOptionPane.showMessageDialog(viewCliente, "No row selected");
 		} else {
 			viewCliente.setVisible(false);
-			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(0, viewCliente);
+			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
 		}
 		
 	}
@@ -103,7 +114,7 @@ class ListenerBorrar implements ActionListener {
 			} else {
 				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
 				//Update table
-				ControllerCliente.fillTable();
+				ControllerCliente.fillTable(viewCliente);
 				
 			}
 		}
@@ -123,7 +134,7 @@ class ListenerCrear implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewCliente.setVisible(false);
-		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(0, viewCliente);
+		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(viewCliente);
 	}
 	
 }

@@ -136,7 +136,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE "+table+"SET nombre = '"+nombre+"', apellido = '"+apellido+"',direccion = '"+direccion+"',dni = "+dni+",fecha = '"+fecha+"' WHERE id = "+id+";";
+			sql="UPDATE "+table+" SET nombre = '"+nombre+"', apellido = '"+apellido+"',direccion = '"+direccion+"',dni = "+dni+",fecha = '"+fecha+"' WHERE id = "+id+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
