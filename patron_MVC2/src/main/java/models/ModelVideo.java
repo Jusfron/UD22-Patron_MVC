@@ -6,14 +6,15 @@ public class ModelVideo {
 	private String director;
 	private int cli_id;
 	
+//	constructor with all parameters by default
+	public ModelVideo() {
+	}
+// constructor with all parameters
 	public ModelVideo(int id, String title, String director, int cli_id) {
 		this.id = id;
 		this.title = title;
 		this.director = director;
 		this.cli_id = cli_id;
-	}
-	
-	public ModelVideo() {
 	}
 
 //	Getters
