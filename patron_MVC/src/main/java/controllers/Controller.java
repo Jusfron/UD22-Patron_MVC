@@ -1,5 +1,8 @@
 package controllers;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import models.ModelCliente;
 import views.ViewCliente;
 
@@ -11,6 +14,10 @@ public class Controller {
 	public Controller (ModelCliente modelCliente, ViewCliente viewCliente) {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
+		
+		viewCliente.addListenerBtnEditar(new ListenerEditar());
+		viewCliente.addListenerBtnBorrar(new ListenerBorrar());
+		viewCliente.addListenerBtnCrear(new ListenerCrear());
 	}
 	
 	public void startView() {
@@ -19,4 +26,34 @@ public class Controller {
 		viewCliente.setVisible(true);
 	}
 
+}
+
+class ListenerEditar implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+class ListenerBorrar implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+}
+
+class ListenerCrear implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -120,15 +120,15 @@ public class ViewCliente extends JFrame {
 		
 	}
 	
-	public void btnEditarAddListener(ActionListener listener) {
+	public void addListenerBtnEditar(ActionListener listener) {
 		btnEditar.addActionListener(listener);
 	}
 	
-	public void btnBorrarAddListener(ActionListener listener) {
+	public void addListenerBtnBorrar(ActionListener listener) {
 		btnBorrar.addActionListener(listener);
 	}
 	
-	public void btnCrearAddListener(ActionListener listener) {
+	public void addListenerBtnCrear(ActionListener listener) {
 		btnEditar.addActionListener(listener);
 	}
 }
