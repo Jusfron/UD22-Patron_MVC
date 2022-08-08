@@ -14,7 +14,9 @@ public class Controller {
 	}
 	
 	public void startView() {
-		
+		viewCliente.setTitle("Cliente");
+		viewCliente.setLocationRelativeTo(null);
+		viewCliente.setVisible(true);
 	}
 
 }
