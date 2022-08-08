@@ -105,8 +105,6 @@ public class DBConection {
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
-			ResultSetMetaData rsmd = resultSet.getMetaData();
-			int columnNum = rsmd.getColumnCount();
 			
 			while(resultSet.next()) {
 				ModelCliente cliente=new ModelCliente();
@@ -173,6 +171,31 @@ public class DBConection {
 			System.out.println(e.getMessage());
 		}
 		return cliente;
+	}
+	
+	public static int lastId() {
+		int id=0;
+		try {
+			connection();
+			String queryDB = "USE " + db + ";";
+			Statement stdb = connection.createStatement();
+			stdb.executeUpdate(queryDB);
+			
+			String querySl = "SELECT * FROM " + table + ";";
+			Statement st = connection.createStatement();
+			ResultSet resultSet;
+			resultSet = st.executeQuery(querySl);
+			
+			while(resultSet.next()) {
+				id=resultSet.getInt(1);
+			}
+			id++;
+			closeConnection();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return id;
 	}
 
 }
