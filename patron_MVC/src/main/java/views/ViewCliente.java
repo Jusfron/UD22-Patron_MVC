@@ -118,6 +118,7 @@ public class ViewCliente extends JFrame {
 		table.getModel();
 		contentPane.setLayout(gl_contentPane);
 		
+		
 	}
 	
 	public void addListenerBtnEditar(ActionListener listener) {
