@@ -211,6 +211,7 @@ public class DBConection {
 		}
 	}
 
+	// Function to get the specified record from table "Client"
 	public static ModelCliente getValueCliente(int id) {
 		ModelCliente cliente=new ModelCliente();
 		try {
@@ -238,7 +239,8 @@ public class DBConection {
 		}
 		return cliente;
 	}
-	
+
+	// Function to get the specified record from table "Videos"
 	public static ModelVideo getValueVideo(int id) {
 		ModelVideo video =new ModelVideo();
 		try {
@@ -261,6 +263,7 @@ public class DBConection {
 		return video;
 	}
 	
+	// Function to get the last id from any table
 	public static int lastId(String table) {
 		int id=0;
 		try {
