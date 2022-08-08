@@ -6,6 +6,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import models.ModelCliente;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
@@ -157,7 +160,11 @@ public class ViewFormCliente extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void from() {
-		
+	public void from(ModelCliente cliente) {
+		txtFNombre.setText(cliente.getNombre());
+		txtFApellido.setText(cliente.getApellido());
+		txtFDireccion.setText(cliente.getDireccion());
+		txtFDNI.setText(String.valueOf(cliente.getDni()));
+		txtFFecha.setText(cliente.getDate());
 	}
 }
