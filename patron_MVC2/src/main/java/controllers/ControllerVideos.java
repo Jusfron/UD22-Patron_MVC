@@ -147,6 +147,7 @@ class ListenerCambiarVideos implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		ControllerCliente controllerCliente = new ControllerCliente(viewTable);
+		controllerCliente.startView();
 	}
 	
 }
