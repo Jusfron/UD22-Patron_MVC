@@ -11,6 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
 import models.ModelCliente;
+import models.ModelVideo;
 import views.ViewTable;
 
 public class ControllerVideos {
@@ -45,9 +46,9 @@ public class ControllerVideos {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewCliente) {
-		ArrayList<ModelCliente> clientes = DBConection.getValues();
+		ArrayList<ModelVideo> videos = DBConection.getValuesVideos();
 		viewCliente.getTable().setModel((new DefaultTableModel(
-				new Object[clientes.size()][6] ,
+				new Object[videos.size()][6] ,
 				new String[] {
 					"id", "nombre", "apellido", "direccion", "dni", "fecha"
 				}) {
@@ -59,14 +60,14 @@ public class ControllerVideos {
 			    }
 			}));
 		
-		for(int i = 0; i < clientes.size(); i++) {
-			viewCliente.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getApellido(), i, 2);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDireccion(), i, 3);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDni(), i, 4);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDate(), i, 5);
-		}
+		/*for(int i = 0; i < videos.size(); i++) {
+			viewCliente.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getApellido(), i, 2);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDireccion(), i, 3);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDni(), i, 4);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDate(), i, 5);
+		}*/
 	}
 
 }
@@ -110,7 +111,7 @@ class ListenerBorrarVideos implements ActionListener {
 			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewCliente, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), "Videos")  ;
 				//Update table
 				ControllerCliente.fillTable(viewCliente);
 				

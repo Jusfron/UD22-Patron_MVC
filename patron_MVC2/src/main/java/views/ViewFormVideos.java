@@ -14,6 +14,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
 import models.ModelCliente;
+import models.ModelVideo;
 
 public class ViewFormVideos extends JFrame{
 	private JPanel contentPane;
@@ -120,10 +121,10 @@ public class ViewFormVideos extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void form(ModelVideos video) {
-		txtFTitle.setText(video.getTitle());
-		txtFDirector.setText(video.getDirector());
-		txtFClientId.setText(video.getClientId());
+	public void form(ModelVideo video) {
+//		txtFTitle.setText(video.getTitle());
+//		txtFDirector.setText(video.getDirector());
+//		txtFClientId.setText(video.getClientId());
 	}
 	
 	
