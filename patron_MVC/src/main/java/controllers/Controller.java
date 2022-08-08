@@ -3,8 +3,11 @@ package controllers;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import models.ModelCliente;
 import views.ViewCliente;
+import views.ViewFormCliente;
 
 public class Controller {
 	
@@ -39,7 +42,14 @@ class ListenerEditar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
+		if(viewCliente.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		} else {
+			viewCliente.setVisible(false);
+			ViewFormCliente viewFormCliente = new ViewFormCliente();
+			viewCliente.setLocationRelativeTo(viewCliente);
+			viewFormCliente.setVisible(true);
+		}
 		
 	}
 	
@@ -56,8 +66,11 @@ class ListenerBorrar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		if(viewCliente.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		} else {
+			
+		}
 	}
 	
 }
@@ -73,8 +86,10 @@ class ListenerCrear implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		viewCliente.setVisible(false);
+		ViewFormCliente viewFormCliente = new ViewFormCliente();
+		viewCliente.setLocationRelativeTo(viewCliente);
+		viewFormCliente.setVisible(true);
 	}
 	
 }

@@ -129,7 +129,7 @@ public class ViewCliente extends JFrame {
 	}
 	
 	public void addListenerBtnCrear(ActionListener listener) {
-		btnEditar.addActionListener(listener);
+		btnCrear.addActionListener(listener);
 	}
 
 	public JTable getTable() {
