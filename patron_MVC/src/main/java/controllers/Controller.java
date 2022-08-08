@@ -35,7 +35,7 @@ public class Controller {
 	
 	public void fillTable(ArrayList<ModelCliente> clientes) {
 		for(int i = 0; i < clientes.size(); i++) {
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getId(), i, 0);
+			viewCliente.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
 			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
 			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getApellido(), i, 2);
 			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDireccion(), i, 3);
@@ -87,7 +87,7 @@ class ListenerBorrar implements ActionListener {
 			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewCliente, "No row selected");
 			} else {
-				DBConection.deleteData(Integer.parseInt((String) viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0))  );
+				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
 			}
 		}
 	}

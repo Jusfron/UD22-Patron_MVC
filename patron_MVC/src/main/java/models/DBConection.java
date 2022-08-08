@@ -10,21 +10,13 @@ import java.util.ArrayList;
 
 public class DBConection {
 	
-	private static String url;
-	private static String user;
-	private static String pass;
-	private static String db;
-	private static String table;
+	private static String url = Credentials.URL_MYSQL;
+	private static String user = Credentials.USER_MYSQL;
+	private static String pass = Credentials.PASS_MYSQL;
+	private static String db="UD22";
+	private static String table="Cliente";
 	static Connection connection;
 	static ArrayList<ModelCliente> clientes = new ArrayList<>();
-	
-	public DBConection() {
-		this.url = Credentials.URL_MYSQL;
-		this.user = Credentials.USER_MYSQL;
-		this.pass = Credentials.PASS_MYSQL;
-		this.db="UD22";
-		this.table="Cliente";
-	}
 
 	public static void connection() {
 		
@@ -118,7 +110,6 @@ public class DBConection {
 			
 			while(resultSet.next()) {
 				ModelCliente cliente=new ModelCliente();
-				for(int i = 1; i <= columnNum; i++) {
 					cliente.setId(resultSet.getInt(1));
 					cliente.setNombre(resultSet.getString(2));
 					cliente.setApellido(resultSet.getString(3));
@@ -126,7 +117,6 @@ public class DBConection {
 					cliente.setDni(resultSet.getInt(5));
 					cliente.setDate(String.valueOf(resultSet.getDate(6)));
 					clientes.add(cliente);
-				}
 			}
 			
 			closeConnection();
