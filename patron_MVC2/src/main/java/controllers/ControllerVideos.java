@@ -14,42 +14,42 @@ import models.ModelCliente;
 import views.ViewTable;
 
 public class ControllerVideos {
-	ModelCliente modelCliente;
-	ViewTable viewCliente;
+	ModelVideos modelVideos;
+	ViewTable viewTable;
 	
-	public ControllerVideos (ModelCliente modelCliente, ViewTable viewCliente) {
+	public ControllerVideos (ModelCliente modelCliente, ViewTable viewTable) {
 		this.modelCliente = modelCliente;
-		this.viewCliente = viewCliente;
+		this.viewTable = viewTable;
 		
-		viewCliente.addListenerBtnEditar(new ListenerEditarVideos(viewCliente));
-		viewCliente.addListenerBtnBorrar(new ListenerBorrarVideos(viewCliente));
-		viewCliente.addListenerBtnCrear(new ListenerCrearVideos(viewCliente));
+		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
+		viewTable.addListenerBtnBorrar(new ListenerBorrarVideos(viewTable));
+		viewTable.addListenerBtnCrear(new ListenerCrearVideos(viewTable));
 		
-		viewCliente.addComponentListener(new ComponentAdapter() {
+		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
 			      /* code run when component hidden*/
 			   }
 			   public void componentShown(ComponentEvent e) {
-				   fillTable(viewCliente);
+				   fillTable(viewTable);
 			   }
 			});
 	}
 	
 	public void startView() {
-		viewCliente.setTitle("Cliente");
-		viewCliente.setLocationRelativeTo(null);
-		viewCliente.setVisible(true);
+		viewTable.setTitle("Cliente");
+		viewTable.setLocationRelativeTo(null);
+		viewTable.setVisible(true);
 		
-		fillTable(viewCliente);
+		fillTable(viewTable);
 	}
 	
 	@SuppressWarnings("serial")
-	public static void fillTable(ViewTable viewCliente) {
-		ArrayList<ModelCliente> clientes = DBConection.getValues();
-		viewCliente.getTable().setModel((new DefaultTableModel(
-				new Object[clientes.size()][6] ,
+	public static void fillTable(ViewTable viewTable) {
+		ArrayList<ModelVideos> videos = DBConection.getValues();
+		viewTable.getTable().setModel((new DefaultTableModel(
+				new Object[videos.size()][4] ,
 				new String[] {
-					"id", "nombre", "apellido", "direccion", "dni", "fecha"
+					"id", "title", "director", "cli_id"
 				}) {
 
 			    @Override
@@ -59,13 +59,11 @@ public class ControllerVideos {
 			    }
 			}));
 		
-		for(int i = 0; i < clientes.size(); i++) {
-			viewCliente.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getApellido(), i, 2);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDireccion(), i, 3);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDni(), i, 4);
-			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getDate(), i, 5);
+		for(int i = 0; i < videos.size(); i++) {
+			viewTable.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getApellido(), i, 2);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getDireccion(), i, 3);
 		}
 	}
 
@@ -73,20 +71,20 @@ public class ControllerVideos {
 
 class ListenerEditarVideos implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewTable;
 	
-	public ListenerEditarVideos(ViewTable viewCliente) {
+	public ListenerEditarVideos(ViewTable viewTable) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewTable = viewTable;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(viewCliente.getTable().getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		if(viewTable.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
-			viewCliente.setVisible(false);
-			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
+			viewTable.setVisible(false);
+			ControllerFormVideos controllerFormVideos = new ControllerFormVideos(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
 		}
 		
 	}
@@ -95,24 +93,24 @@ class ListenerEditarVideos implements ActionListener {
 
 class ListenerBorrarVideos implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewTable;
 	
-	public ListenerBorrarVideos(ViewTable viewCliente) {
+	public ListenerBorrarVideos(ViewTable viewTable) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewTable = viewTable;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(viewCliente.getTable().getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		if(viewTable.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
-			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
-				JOptionPane.showMessageDialog(viewCliente, "No row selected");
+			if(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), viewTable.getTable().getSelectedColumn()) == "") {
+				JOptionPane.showMessageDialog(viewTable, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )))  ;
 				//Update table
-				ControllerCliente.fillTable(viewCliente);
+				ControllerVideos.fillTable(viewTable);
 				
 			}
 		}
@@ -122,17 +120,26 @@ class ListenerBorrarVideos implements ActionListener {
 
 class ListenerCrearVideos implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewTable;
 	
-	public ListenerCrearVideos(ViewTable viewCliente) {
+	public ListenerCrearVideos(ViewTable viewTable) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewTable = viewTable;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		viewCliente.setVisible(false);
-		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(viewCliente);
+		viewTable.setVisible(false);
+		ControllerFormVideos controllerFormVideos = new ControllerFormVideos(viewTable);
+	}
+	
+}
+
+class ListenerCambiarVideos implements ActionListener {
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		
 	}
 	
 }
