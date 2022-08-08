@@ -81,7 +81,7 @@ public class ViewFormCliente extends JFrame{
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		lblError = new JLabel("ASDASDASDASDAS");
+		lblError = new JLabel("");
 		lblError.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblError.setForeground(Color.RED);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
