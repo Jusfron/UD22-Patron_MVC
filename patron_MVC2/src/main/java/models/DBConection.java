@@ -204,7 +204,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Video SET id = '"+id+"', title = '"+title+"',director = '"+director+"',clientId = "+clientId+" WHERE id = "+id+";";
+			sql="UPDATE Video SET id = '"+id+"', title = '"+title+"',director = '"+director+"',cli_id = "+clientId+" WHERE id = "+id+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -256,9 +256,14 @@ public class DBConection {
 			String querySl = "SELECT * FROM Videos where id="+id+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
-			resultSet = st.executeQuery(querySl);			
-			
+			resultSet = st.executeQuery(querySl);		
 			resultSet.next();	
+			resultSet = st.executeQuery(querySl);			
+			video.setId(resultSet.getInt(1));
+			video.setTitle(resultSet.getString(2));
+			video.setDirector(resultSet.getString(3));
+			video.setCli_id(resultSet.getInt(4));
+			
 			closeConnection();
 			
 		} catch (SQLException e) {
