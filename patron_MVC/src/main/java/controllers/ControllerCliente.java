@@ -5,18 +5,19 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
 import models.ModelCliente;
 import views.ViewCliente;
 import views.ViewFormCliente;
 
-public class Controller {
+public class ControllerCliente {
 	
 	ModelCliente modelCliente;
-	ViewCliente viewCliente;
+	static ViewCliente viewCliente;
 	
-	public Controller (ModelCliente modelCliente, ViewCliente viewCliente) {
+	public ControllerCliente (ModelCliente modelCliente, ViewCliente viewCliente) {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
@@ -30,10 +31,25 @@ public class Controller {
 		viewCliente.setLocationRelativeTo(null);
 		viewCliente.setVisible(true);
 		
-		fillTable(DBConection.getValues());
+		fillTable();
 	}
 	
-	public void fillTable(ArrayList<ModelCliente> clientes) {
+	@SuppressWarnings("serial")
+	public static void fillTable() {
+		ArrayList<ModelCliente> clientes = DBConection.getValues();
+		viewCliente.getTable().setModel((new DefaultTableModel(
+				new Object[clientes.size()][6] ,
+				new String[] {
+					"id", "nombre", "apellido", "direccion", "dni", "fecha"
+				}) {
+
+			    @Override
+			    public boolean isCellEditable(int row, int column) {
+			       //all cells false
+			       return false;
+			    }
+			}));
+		
 		for(int i = 0; i < clientes.size(); i++) {
 			viewCliente.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
 			viewCliente.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
@@ -61,9 +77,7 @@ class ListenerEditar implements ActionListener {
 			JOptionPane.showMessageDialog(viewCliente, "No row selected");
 		} else {
 			viewCliente.setVisible(false);
-			ViewFormCliente viewFormCliente = new ViewFormCliente();
-			viewCliente.setLocationRelativeTo(viewCliente);
-			viewFormCliente.setVisible(true);
+			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(0, viewCliente);
 		}
 		
 	}
@@ -88,6 +102,9 @@ class ListenerBorrar implements ActionListener {
 				JOptionPane.showMessageDialog(viewCliente, "No row selected");
 			} else {
 				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )))  ;
+				//Update table
+				ControllerCliente.fillTable();
+				
 			}
 		}
 	}
@@ -106,9 +123,7 @@ class ListenerCrear implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewCliente.setVisible(false);
-		ViewFormCliente viewFormCliente = new ViewFormCliente();
-		viewCliente.setLocationRelativeTo(viewCliente);
-		viewFormCliente.setVisible(true);
+		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(0, viewCliente);
 	}
 	
 }

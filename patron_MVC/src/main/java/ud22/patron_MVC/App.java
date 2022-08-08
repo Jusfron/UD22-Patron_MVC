@@ -1,6 +1,6 @@
 package ud22.patron_MVC;
 
-import controllers.Controller;
+import controllers.ControllerCliente;
 import models.ModelCliente;
 import views.ViewCliente;
 
@@ -15,7 +15,7 @@ public class App
         ModelCliente modelCliente = new ModelCliente();
         ViewCliente viewCliente = new ViewCliente();
         
-        Controller controller = new Controller(modelCliente, viewCliente);
+        ControllerCliente controller = new ControllerCliente(modelCliente, viewCliente);
         controller.startView();
     }
 }

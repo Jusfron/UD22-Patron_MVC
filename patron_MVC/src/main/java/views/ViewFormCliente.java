@@ -25,8 +25,8 @@ public class ViewFormCliente extends JFrame{
 	private JTextField txtFDireccion;
 	private JTextField txtFDNI;
 	private JTextField txtFFecha;
-	
-	
+	private JButton btnGuardar;
+
 	public ViewFormCliente() {
 		inicializar();
 	}
@@ -77,8 +77,8 @@ public class ViewFormCliente extends JFrame{
 		txtFFecha.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtFFecha.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Guardar");
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		btnGuardar = new JButton("Guardar");
+		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel lblError = new JLabel("");
 		lblError.setForeground(Color.RED);
@@ -123,7 +123,7 @@ public class ViewFormCliente extends JFrame{
 						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblError)
-								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
+								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 							.addGap(88))))
 		);
 		groupLayout.setVerticalGroup(
@@ -152,7 +152,7 @@ public class ViewFormCliente extends JFrame{
 						.addComponent(lblNewLabel_1_1_4, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtFFecha, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(59)
-					.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblError)
 					.addContainerGap(34, Short.MAX_VALUE))
@@ -160,11 +160,38 @@ public class ViewFormCliente extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void from(ModelCliente cliente) {
+	public void form(ModelCliente cliente) {
 		txtFNombre.setText(cliente.getNombre());
 		txtFApellido.setText(cliente.getApellido());
 		txtFDireccion.setText(cliente.getDireccion());
 		txtFDNI.setText(String.valueOf(cliente.getDni()));
 		txtFFecha.setText(cliente.getDate());
 	}
+	
+	
+	public JButton getBtnGuardar() {
+		return btnGuardar;
+	}
+
+	public String getTxtFNombre() {
+		return txtFNombre.getText();
+	}
+
+	public String getTxtFApellido() {
+		return txtFApellido.getText();
+	}
+
+	public String getTxtFDireccion() {
+		return txtFDireccion.getText();
+	}
+
+	public String getTxtFDNI() {
+		return txtFDNI.getText();
+	}
+
+	public String getTxtFFecha() {
+		return txtFFecha.getText();
+	}
+	
+	
 }

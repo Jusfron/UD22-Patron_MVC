@@ -16,7 +16,7 @@ public class DBConection {
 	private static String db="UD22";
 	private static String table="Cliente";
 	static Connection connection;
-	static ArrayList<ModelCliente> clientes = new ArrayList<>();
+	
 
 	public static void connection() {
 		
@@ -50,7 +50,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="INSERT INTO `"+table+"` VALUES ("+id+","+nombre+","+apellido+","+direccion+","+dni+","+fecha+");";
+			sql="INSERT INTO `"+table+"` VALUES ("+id+",'"+nombre+"','"+apellido+"','"+direccion+"',"+dni+",'"+fecha+"');";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -95,6 +95,8 @@ public class DBConection {
 	}
 	
 	public static ArrayList<ModelCliente> getValues() {
+		ArrayList<ModelCliente> clientes = new ArrayList<>();
+		
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
@@ -136,7 +138,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE "+table+"SET nombre = '"+nombre+"', apellido = '"+apellido+"',direccion = '"+direccion+"',dni = '"+dni+"',fecha = '"+fecha+"' WHERE id = "+id+";";
+			sql="UPDATE "+table+"SET nombre = '"+nombre+"', apellido = '"+apellido+"',direccion = '"+direccion+"',dni = "+dni+",fecha = '"+fecha+"' WHERE id = "+id+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
