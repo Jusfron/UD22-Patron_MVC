@@ -109,6 +109,10 @@ public class ViewTable extends JFrame {
 	public void addListenerBtnCrear(ActionListener listener) {
 		btnCrear.addActionListener(listener);
 	}
+	
+	public void addListenerBtnCambiar(ActionListener listener) {
+		btnCambiar.addActionListener(listener);
+	}
 
 	public JTable getTable() {
 		return table;

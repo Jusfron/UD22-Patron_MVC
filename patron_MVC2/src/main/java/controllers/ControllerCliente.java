@@ -16,16 +16,15 @@ import views.ViewFormCliente;
 
 public class ControllerCliente {
 	
-	ModelCliente modelCliente;
 	ViewTable viewTable;
 	
-	public ControllerCliente (ModelCliente modelCliente, ViewTable viewTable) {
-		this.modelCliente = modelCliente;
+	public ControllerCliente (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
 		viewTable.addListenerBtnEditar(new ListenerEditarCliente(viewTable));
 		viewTable.addListenerBtnBorrar(new ListenerBorrarCliente(viewTable));
 		viewTable.addListenerBtnCrear(new ListenerCrearCliente(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCrearVideos(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -135,6 +134,22 @@ class ListenerCrearCliente implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		viewCliente.setVisible(false);
 		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(viewCliente);
+	}
+	
+}
+
+class ListenerCambiarCliente implements ActionListener {
+	
+	ViewTable viewTable;
+	
+	public ListenerCambiarCliente(ViewTable viewTable) {
+		super();
+		this.viewTable = viewTable;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		ControllerVideos controllerVideos = new ControllerVideos(viewTable);
 	}
 	
 }
