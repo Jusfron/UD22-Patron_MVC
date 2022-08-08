@@ -20,7 +20,7 @@ public class ViewCliente extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table;
-	private JButton btnBuscar;
+	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnCrear;
 	
@@ -38,8 +38,8 @@ public class ViewCliente extends JFrame {
 		JLabel lblCliente = new JLabel("Cliente");
 		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		btnBuscar = new JButton("Buscar");
-		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		btnEditar = new JButton("Editar");
+		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		btnBorrar = new JButton("Borrar");
 		btnBorrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -57,7 +57,7 @@ public class ViewCliente extends JFrame {
 					.addContainerGap(586, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(63)
-					.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+					.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 					.addGap(142)
 					.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 765, Short.MAX_VALUE)
@@ -77,7 +77,7 @@ public class ViewCliente extends JFrame {
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
-						.addComponent(btnBuscar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 					.addGap(30))
@@ -120,8 +120,8 @@ public class ViewCliente extends JFrame {
 		
 	}
 	
-	public void btnBuscarAddListener(ActionListener listener) {
-		btnBuscar.addActionListener(listener);
+	public void btnEditarAddListener(ActionListener listener) {
+		btnEditar.addActionListener(listener);
 	}
 	
 	public void btnBorrarAddListener(ActionListener listener) {
@@ -129,6 +129,6 @@ public class ViewCliente extends JFrame {
 	}
 	
 	public void btnCrearAddListener(ActionListener listener) {
-		btnBuscar.addActionListener(listener);
+		btnEditar.addActionListener(listener);
 	}
 }
