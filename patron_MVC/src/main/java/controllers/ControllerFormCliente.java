@@ -12,6 +12,7 @@ public class ControllerFormCliente implements ActionListener{
 	private ViewFormCliente viewFormCliente;
 	private Component clienteWindow;
 	private int id = -1;
+	private String validDni = "0123456789";
 	
 	public ControllerFormCliente(int id, Component clienteWindow) {
 		this.id = id;
@@ -27,6 +28,7 @@ public class ControllerFormCliente implements ActionListener{
 		
 		initialize();
 	}
+	
 	
 	private void initialize() {
 		viewFormCliente = new ViewFormCliente();
