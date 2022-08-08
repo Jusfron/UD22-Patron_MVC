@@ -40,7 +40,7 @@ public class ControllerFormVideos implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(DBConection.lastId(), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), Integer.parseInt(viewFormVideos.getTxtFClientId()));
+			DBConection.insertData(DBConection.lastId("videos"), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), Integer.parseInt(viewFormVideos.getTxtFClientId()));
 		} else {
 			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),Integer.parseInt(viewFormVideos.getTxtFClientId()) );
 		}
