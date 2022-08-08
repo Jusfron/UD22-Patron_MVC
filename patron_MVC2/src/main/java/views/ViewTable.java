@@ -16,19 +16,20 @@ import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JScrollPane;
 
-public class ViewCliente extends JFrame {
+public class ViewTable extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table;
 	private JButton btnEditar;
 	private JButton btnBorrar;
 	private JButton btnCrear;
+	private JButton btnCambiar;
 	
 	/**
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
-	public ViewCliente() {
+	public ViewTable() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 727, 459);
 		contentPane = new JPanel();
@@ -48,6 +49,9 @@ public class ViewCliente extends JFrame {
 		btnCrear.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JScrollPane scrollPane = new JScrollPane();
+		
+		btnCambiar = new JButton("Cambiar Tabla");
+		btnCambiar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -56,17 +60,19 @@ public class ViewCliente extends JFrame {
 					.addComponent(lblCliente, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(586, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(63)
-					.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-					.addGap(142)
-					.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 765, Short.MAX_VALUE)
-					.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
-					.addGap(76))
-				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(30)
-					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 651, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(22, Short.MAX_VALUE))
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+							.addComponent(btnCambiar)
+							.addGap(58)
+							.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addPreferredGap(ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
+							.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addGap(82)
+							.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 98, GroupLayout.PREFERRED_SIZE)
+							.addGap(20))
+						.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 651, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -75,11 +81,12 @@ public class ViewCliente extends JFrame {
 					.addComponent(lblCliente, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addGap(7)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
-					.addPreferredGap(ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
-					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
+					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+					.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnCambiar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
 						.addComponent(btnEditar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnCrear, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnBorrar, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE))
 					.addGap(30))
 		);
 		

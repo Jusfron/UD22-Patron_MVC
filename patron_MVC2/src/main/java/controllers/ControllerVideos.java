@@ -12,20 +12,18 @@ import javax.swing.table.DefaultTableModel;
 import models.DBConection;
 import models.ModelCliente;
 import views.ViewTable;
-import views.ViewFormCliente;
 
-public class ControllerCliente {
-	
+public class ControllerVideos {
 	ModelCliente modelCliente;
 	ViewTable viewCliente;
 	
-	public ControllerCliente (ModelCliente modelCliente, ViewTable viewCliente) {
+	public ControllerVideos (ModelCliente modelCliente, ViewTable viewCliente) {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
-		viewCliente.addListenerBtnEditar(new ListenerEditarCliente(viewCliente));
-		viewCliente.addListenerBtnBorrar(new ListenerBorrarCliente(viewCliente));
-		viewCliente.addListenerBtnCrear(new ListenerCrearCliente(viewCliente));
+		viewCliente.addListenerBtnEditar(new ListenerEditarVideos(viewCliente));
+		viewCliente.addListenerBtnBorrar(new ListenerBorrarVideos(viewCliente));
+		viewCliente.addListenerBtnCrear(new ListenerCrearVideos(viewCliente));
 		
 		viewCliente.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -73,11 +71,11 @@ public class ControllerCliente {
 
 }
 
-class ListenerEditarCliente implements ActionListener {
+class ListenerEditarVideos implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerEditarCliente(ViewTable viewCliente) {
+	public ListenerEditarVideos(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -95,11 +93,11 @@ class ListenerEditarCliente implements ActionListener {
 	
 }
 
-class ListenerBorrarCliente implements ActionListener {
+class ListenerBorrarVideos implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerBorrarCliente(ViewTable viewCliente) {
+	public ListenerBorrarVideos(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -122,11 +120,11 @@ class ListenerBorrarCliente implements ActionListener {
 	
 }
 
-class ListenerCrearCliente implements ActionListener {
+class ListenerCrearVideos implements ActionListener {
 	
 	ViewTable viewCliente;
 	
-	public ListenerCrearCliente(ViewTable viewCliente) {
+	public ListenerCrearVideos(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
