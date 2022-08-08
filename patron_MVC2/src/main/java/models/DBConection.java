@@ -204,7 +204,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Video SET id = '"+id+"', title = '"+title+"',director = '"+director+"',cli_id = "+clientId+" WHERE id = "+id+";";
+			sql="UPDATE Videos SET id = '"+id+"', title = '"+title+"',director = '"+director+"',cli_id = "+clientId+" WHERE id = "+id+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
