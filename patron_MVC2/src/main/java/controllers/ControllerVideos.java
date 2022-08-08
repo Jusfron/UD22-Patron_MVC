@@ -11,14 +11,15 @@ import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
 import models.ModelCliente;
+import models.ModelVideo;
 import views.ViewTable;
 
 public class ControllerVideos {
-	ModelVideos modelVideos;
+	ModelVideo modelVideo;
 	ViewTable viewTable;
 	
-	public ControllerVideos (ModelCliente modelCliente, ViewTable viewTable) {
-		this.modelCliente = modelCliente;
+	public ControllerVideos (ModelVideo modelVideo, ViewTable viewTable) {
+		this.modelVideo = modelVideo;
 		this.viewTable = viewTable;
 		
 		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
@@ -45,7 +46,7 @@ public class ControllerVideos {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelVideos> videos = DBConection.getValues();
+		ArrayList<ModelVideo> videos = DBConection.getValuesVideos();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[videos.size()][4] ,
 				new String[] {
@@ -65,6 +66,14 @@ public class ControllerVideos {
 			viewTable.getTable().getModel().setValueAt(videos.get(i).getApellido(), i, 2);
 			viewTable.getTable().getModel().setValueAt(videos.get(i).getDireccion(), i, 3);
 		}
+		/*for(int i = 0; i < videos.size(); i++) {
+			viewCliente.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getApellido(), i, 2);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDireccion(), i, 3);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDni(), i, 4);
+			viewCliente.getTable().getModel().setValueAt(videos.get(i).getDate(), i, 5);
+		}*/
 	}
 
 }
@@ -108,7 +117,7 @@ class ListenerBorrarVideos implements ActionListener {
 			if(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), viewTable.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewTable, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )))  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Videos")  ;
 				//Update table
 				ControllerVideos.fillTable(viewTable);
 				
