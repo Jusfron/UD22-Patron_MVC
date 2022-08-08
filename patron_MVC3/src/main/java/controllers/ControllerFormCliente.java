@@ -38,24 +38,16 @@ public class ControllerFormCliente implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		
-		if(viewFormCliente.getTxtFNombre().equals("")||viewFormCliente.getTxtFApellido().equals("")||viewFormCliente.getTxtFDireccion().equals("")||viewFormCliente.getTxtFDNI().equals("")||viewFormCliente.getTxtFFecha().equals("")) {
-			viewFormCliente.setLblError("Error: Algunos campos estan vacios");
-		}else {
-			if(id == -1) {
+		if(id == -1) {
 			DBConection.insertData(DBConection.lastId(), viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
 					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
-			} else {
+		} else {
 			DBConection.updateData(id, viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
 					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
-			clienteWindow.setVisible(true);
-			viewFormCliente.dispose();
-			}
 		}
 		
-		
-		
-		
+		clienteWindow.setVisible(true);
+		viewFormCliente.dispose();
 	}
 
 }

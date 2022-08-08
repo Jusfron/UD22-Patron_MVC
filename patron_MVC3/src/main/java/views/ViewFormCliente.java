@@ -26,7 +26,6 @@ public class ViewFormCliente extends JFrame{
 	private JTextField txtFDNI;
 	private JTextField txtFFecha;
 	private JButton btnGuardar;
-	private JLabel lblError;
 
 	public ViewFormCliente() {
 		inicializar();
@@ -192,10 +191,6 @@ public class ViewFormCliente extends JFrame{
 
 	public String getTxtFFecha() {
 		return txtFFecha.getText();
-	}
-
-	public void setLblError(String lblError) {
-		this.lblError.setText(lblError);;
 	}
 	
 	
