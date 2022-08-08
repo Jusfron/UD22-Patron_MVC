@@ -122,9 +122,9 @@ public class ViewFormVideos extends JFrame{
 	}
 	
 	public void form(ModelVideo video) {
-//		txtFTitle.setText(video.getTitle());
-//		txtFDirector.setText(video.getDirector());
-//		txtFClientId.setText(video.getClientId());
+		txtFTitle.setText(video.getTitle());
+		txtFDirector.setText(video.getDirector());
+		txtFClientId.setText(Integer.toString(video.getCli_id()) );
 	}
 	
 	
