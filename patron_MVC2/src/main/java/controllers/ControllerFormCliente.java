@@ -39,7 +39,7 @@ public class ControllerFormCliente implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(DBConection.lastId(), viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
+			DBConection.insertData(DBConection.lastId("Cliente"), viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
 					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
 		} else {
 			DBConection.updateData(id, viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
