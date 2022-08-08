@@ -1,6 +1,5 @@
 package views;
 
-import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
@@ -14,6 +13,7 @@ import javax.swing.JTable;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
+
 import javax.swing.JScrollPane;
 
 public class ViewCliente extends JFrame {
@@ -130,7 +130,7 @@ public class ViewCliente extends JFrame {
 	}
 	
 	public void addListenerBtnCrear(ActionListener listener) {
-		btnEditar.addActionListener(listener);
+		btnCrear.addActionListener(listener);
 	}
 
 	public JTable getTable() {
