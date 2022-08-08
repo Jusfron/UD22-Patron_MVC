@@ -27,7 +27,7 @@ public class ViewCliente extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
 	public ViewCliente() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 727, 459);
@@ -106,9 +106,16 @@ public class ViewCliente extends JFrame {
 			},
 			new String[] {
 				"id", "nombre", "apellido", "direccion", "dni", "fecha"
-			}
-		));
+			}) {
+
+		    @Override
+		    public boolean isCellEditable(int row, int column) {
+		       //all cells false
+		       return false;
+		    }
+		});
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		table.getModel();
 		contentPane.setLayout(gl_contentPane);
 		
 	}
