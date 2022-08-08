@@ -11,12 +11,12 @@ import views.ViewFormVideos;
 public class ControllerFormVideos implements ActionListener{
 
 	private ViewFormVideos viewFormVideos;
-	private Component clienteWindow;
+	private Component clienteVideo;
 	private int id = -1;
 	
-	public ControllerFormVideos(int id, Component clienteWindow) {
+	public ControllerFormVideos(int id, Component clienteVideo) {
 		this.id = id;
-		this.clienteWindow = clienteWindow;
+		this.clienteVideo = clienteVideo;
 		
 		initialize();
 		
@@ -24,14 +24,14 @@ public class ControllerFormVideos implements ActionListener{
 	}
 	
 	public ControllerFormVideos(Component clienteWindow) {
-		this.clienteWindow = clienteWindow;
+		this.clienteVideo = clienteWindow;
 		
 		initialize();
 	}
 	
 	private void initialize() {
 		viewFormVideos = new ViewFormVideos();
-		viewFormVideos.setLocationRelativeTo(clienteWindow);
+		viewFormVideos.setLocationRelativeTo(clienteVideo);
 		viewFormVideos.setVisible(true);
 		
 		viewFormVideos.getBtnGuardar().addActionListener(this);
@@ -45,7 +45,7 @@ public class ControllerFormVideos implements ActionListener{
 			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),Integer.parseInt(viewFormVideos.getTxtFClientId()) );
 		}
 		
-		clienteWindow.setVisible(true);
+		clienteVideo.setVisible(true);
 		viewFormVideos.dispose();
 	}
 
