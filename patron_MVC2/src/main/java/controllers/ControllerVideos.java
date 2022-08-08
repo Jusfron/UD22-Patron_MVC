@@ -62,9 +62,9 @@ public class ControllerVideos {
 		
 		for(int i = 0; i < videos.size(); i++) {
 			viewTable.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getApellido(), i, 2);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getDireccion(), i, 3);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getTitle(), i, 1);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getDirector(), i, 2);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getCli_id(), i, 3);
 		}
 		/*for(int i = 0; i < videos.size(); i++) {
 			viewCliente.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
