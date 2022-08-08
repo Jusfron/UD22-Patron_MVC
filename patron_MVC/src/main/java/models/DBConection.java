@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class DBConection {
 	
@@ -15,6 +16,7 @@ public class DBConection {
 	private static String db;
 	private static String table;
 	static Connection connection;
+	static ArrayList<ModelCliente> clientes = new ArrayList<>();
 	
 	public DBConection() {
 		this.url = Credentials.URL_MYSQL;
@@ -100,7 +102,7 @@ public class DBConection {
 		
 	}
 	
-	public static void getValues () {
+	public static ArrayList<ModelCliente> getValues() {
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
@@ -115,36 +117,25 @@ public class DBConection {
 			int columnNum = rsmd.getColumnCount();
 			
 			while(resultSet.next()) {
+				ModelCliente cliente=new ModelCliente();
 				for(int i = 1; i <= columnNum; i++) {
-					switch(rsmd.getColumnTypeName(i)) {
-					case "VARCHAR":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getString(i));
-						break;
-					case "INT":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getInt(i));
-						break;
-					case "DATE":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDate(i));
-						break;
-					case "DOUBLE":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDouble(i));
-						break;
-					case "CHAR":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getString(i));
-						break;
-					case "DATETIME":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDate(i));
-						break;
-					}
-					
+					cliente.setId(resultSet.getInt(1));
+					cliente.setNombre(resultSet.getString(2));
+					cliente.setApellido(resultSet.getString(3));
+					cliente.setDireccion(resultSet.getString(4));
+					cliente.setDni(resultSet.getInt(5));
+					cliente.setDate(String.valueOf(resultSet.getDate(6)));
+					clientes.add(cliente);
 				}
-				System.out.println();
 			}
 			
 			closeConnection();
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		
+		return clientes;
+		
 	}
 
 	public static void updateData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
@@ -166,7 +157,8 @@ public class DBConection {
 		}
 	}
 
-	public static void getValue(int id) {
+	public static ModelCliente getValue(int id) {
+		ModelCliente cliente=new ModelCliente();
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
@@ -176,41 +168,21 @@ public class DBConection {
 			String querySl = "SELECT * FROM " + table + " where id="+id+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
-			resultSet = st.executeQuery(querySl);
-			ResultSetMetaData rsmd = resultSet.getMetaData();
-			int columnNum = rsmd.getColumnCount();
+			resultSet = st.executeQuery(querySl);			
 			
-			while(resultSet.next()) {
-				for(int i = 1; i <= columnNum; i++) {
-					switch(rsmd.getColumnTypeName(i)) {
-					case "VARCHAR":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getString(i));
-						break;
-					case "INT":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getInt(i));
-						break;
-					case "DATE":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDate(i));
-						break;
-					case "DOUBLE":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDouble(i));
-						break;
-					case "CHAR":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getString(i));
-						break;
-					case "DATETIME":
-						System.out.println(rsmd.getColumnName(i)+": "+resultSet.getDate(i));
-						break;
-					}
-					
-				}
-				System.out.println();
-			}
-			
+			resultSet.next();
+			cliente.setId(resultSet.getInt(1));
+			cliente.setNombre(resultSet.getString(2));
+			cliente.setApellido(resultSet.getString(3));
+			cliente.setDireccion(resultSet.getString(4));
+			cliente.setDni(resultSet.getInt(5));
+			cliente.setDate(String.valueOf(resultSet.getDate(6)));		
 			closeConnection();
+			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
+		return cliente;
 	}
 
 }

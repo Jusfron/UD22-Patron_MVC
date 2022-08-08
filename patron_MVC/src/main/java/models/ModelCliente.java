@@ -75,6 +75,10 @@ public class ModelCliente {
 	public void setDate(int day, int month, int year) {
 		this.date = year + "-" + month + "-" + day;
 	}
+	
+	public void setDate(String date) {
+		this.date = date;
+	}
 
 
 	@Override
