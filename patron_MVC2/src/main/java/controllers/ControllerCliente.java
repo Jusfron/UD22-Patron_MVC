@@ -11,15 +11,15 @@ import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
 import models.ModelCliente;
-import views.ViewCliente;
+import views.ViewTable;
 import views.ViewFormCliente;
 
 public class ControllerCliente {
 	
 	ModelCliente modelCliente;
-	ViewCliente viewCliente;
+	ViewTable viewCliente;
 	
-	public ControllerCliente (ModelCliente modelCliente, ViewCliente viewCliente) {
+	public ControllerCliente (ModelCliente modelCliente, ViewTable viewCliente) {
 		this.modelCliente = modelCliente;
 		this.viewCliente = viewCliente;
 		
@@ -46,7 +46,7 @@ public class ControllerCliente {
 	}
 	
 	@SuppressWarnings("serial")
-	public static void fillTable(ViewCliente viewCliente) {
+	public static void fillTable(ViewTable viewCliente) {
 		ArrayList<ModelCliente> clientes = DBConection.getValues();
 		viewCliente.getTable().setModel((new DefaultTableModel(
 				new Object[clientes.size()][6] ,
@@ -75,9 +75,9 @@ public class ControllerCliente {
 
 class ListenerEditar implements ActionListener {
 	
-	ViewCliente viewCliente;
+	ViewTable viewCliente;
 	
-	public ListenerEditar(ViewCliente viewCliente) {
+	public ListenerEditar(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -97,9 +97,9 @@ class ListenerEditar implements ActionListener {
 
 class ListenerBorrar implements ActionListener {
 	
-	ViewCliente viewCliente;
+	ViewTable viewCliente;
 	
-	public ListenerBorrar(ViewCliente viewCliente) {
+	public ListenerBorrar(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}
@@ -124,9 +124,9 @@ class ListenerBorrar implements ActionListener {
 
 class ListenerCrear implements ActionListener {
 	
-	ViewCliente viewCliente;
+	ViewTable viewCliente;
 	
-	public ListenerCrear(ViewCliente viewCliente) {
+	public ListenerCrear(ViewTable viewCliente) {
 		super();
 		this.viewCliente = viewCliente;
 	}

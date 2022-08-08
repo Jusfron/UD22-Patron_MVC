@@ -16,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
 
 import javax.swing.JScrollPane;
 
-public class ViewCliente extends JFrame {
+public class ViewTable extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table;
@@ -28,7 +28,7 @@ public class ViewCliente extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked", "serial" })
-	public ViewCliente() {
+	public ViewTable() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 727, 459);
 		contentPane = new JPanel();
