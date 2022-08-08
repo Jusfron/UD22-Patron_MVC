@@ -132,15 +132,15 @@ public class ViewFormVideos extends JFrame{
 		return btnGuardar;
 	}
 
-	public String getTxtFNombre() {
+	public String getTxtFTitle() {
 		return txtFTitle.getText();
 	}
 
-	public String getTxtFApellido() {
+	public String getTxtFDirector() {
 		return txtFDirector.getText();
 	}
 
-	public String getTxtFDireccion() {
+	public String getTxtFClientId() {
 		return txtFClientId.getText();
 	}
 }

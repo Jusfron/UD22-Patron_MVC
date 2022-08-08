@@ -17,32 +17,32 @@ import views.ViewFormCliente;
 public class ControllerCliente {
 	
 	ModelCliente modelCliente;
-	ViewTable viewCliente;
+	ViewTable viewTable;
 	
-	public ControllerCliente (ModelCliente modelCliente, ViewTable viewCliente) {
+	public ControllerCliente (ModelCliente modelCliente, ViewTable viewTable) {
 		this.modelCliente = modelCliente;
-		this.viewCliente = viewCliente;
+		this.viewTable = viewTable;
 		
-		viewCliente.addListenerBtnEditar(new ListenerEditarCliente(viewCliente));
-		viewCliente.addListenerBtnBorrar(new ListenerBorrarCliente(viewCliente));
-		viewCliente.addListenerBtnCrear(new ListenerCrearCliente(viewCliente));
+		viewTable.addListenerBtnEditar(new ListenerEditarCliente(viewTable));
+		viewTable.addListenerBtnBorrar(new ListenerBorrarCliente(viewTable));
+		viewTable.addListenerBtnCrear(new ListenerCrearCliente(viewTable));
 		
-		viewCliente.addComponentListener(new ComponentAdapter() {
+		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
 			      /* code run when component hidden*/
 			   }
 			   public void componentShown(ComponentEvent e) {
-				   fillTable(viewCliente);
+				   fillTable(viewTable);
 			   }
 			});
 	}
 	
 	public void startView() {
-		viewCliente.setTitle("Cliente");
-		viewCliente.setLocationRelativeTo(null);
-		viewCliente.setVisible(true);
+		viewTable.setTitle("Cliente");
+		viewTable.setLocationRelativeTo(null);
+		viewTable.setVisible(true);
 		
-		fillTable(viewCliente);
+		fillTable(viewTable);
 	}
 	
 	@SuppressWarnings("serial")
