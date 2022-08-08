@@ -23,7 +23,7 @@ public class ControllerVideos {
 		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
 		viewTable.addListenerBtnBorrar(new ListenerBorrarVideos(viewTable));
 		viewTable.addListenerBtnCrear(new ListenerCrearVideos(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCrearVideos(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {

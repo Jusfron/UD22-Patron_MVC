@@ -24,7 +24,7 @@ public class ControllerCliente {
 		viewTable.addListenerBtnEditar(new ListenerEditarCliente(viewTable));
 		viewTable.addListenerBtnBorrar(new ListenerBorrarCliente(viewTable));
 		viewTable.addListenerBtnCrear(new ListenerCrearCliente(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCrearVideos(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
