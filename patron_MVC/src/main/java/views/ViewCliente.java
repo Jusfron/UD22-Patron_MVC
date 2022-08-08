@@ -1,6 +1,7 @@
 package views;
 
 import java.awt.GridLayout;
+import java.awt.event.ActionListener;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -19,6 +20,9 @@ public class ViewCliente extends JFrame {
 	
 	private JPanel contentPane;
 	private JTable table;
+	private JButton btnBuscar;
+	private JButton btnBorrar;
+	private JButton btnCrear;
 	
 	/**
 	 * Create the frame.
@@ -34,13 +38,13 @@ public class ViewCliente extends JFrame {
 		JLabel lblCliente = new JLabel("Cliente");
 		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
-		JButton btnBuscar = new JButton("Buscar");
+		btnBuscar = new JButton("Buscar");
 		btnBuscar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnBorrar = new JButton("Borrar");
+		btnBorrar = new JButton("Borrar");
 		btnBorrar.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JButton btnCrear = new JButton("Crear");
+		btnCrear = new JButton("Crear");
 		btnCrear.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -107,5 +111,17 @@ public class ViewCliente extends JFrame {
 		table.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		contentPane.setLayout(gl_contentPane);
 		
+	}
+	
+	public void btnBuscarAddListener(ActionListener listener) {
+		btnBuscar.addActionListener(listener);
+	}
+	
+	public void btnBorrarAddListener(ActionListener listener) {
+		btnBorrar.addActionListener(listener);
+	}
+	
+	public void btnCrearAddListener(ActionListener listener) {
+		btnBuscar.addActionListener(listener);
 	}
 }
