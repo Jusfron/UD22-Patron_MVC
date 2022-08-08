@@ -24,6 +24,7 @@ public class ViewTable extends JFrame {
 	private JButton btnBorrar;
 	private JButton btnCrear;
 	private JButton btnCambiar;
+	private JLabel lblTitle;
 	
 	/**
 	 * Create the frame.
@@ -36,8 +37,8 @@ public class ViewTable extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblCliente = new JLabel("Cliente");
-		lblCliente.setFont(new Font("Tahoma", Font.BOLD, 16));
+		lblTitle = new JLabel("Cliente");
+		lblTitle.setFont(new Font("Tahoma", Font.BOLD, 16));
 		
 		btnEditar = new JButton("Editar");
 		btnEditar.setFont(new Font("Tahoma", Font.PLAIN, 14));
@@ -57,7 +58,7 @@ public class ViewTable extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblCliente, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 107, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(586, Short.MAX_VALUE))
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGap(30)
@@ -78,7 +79,7 @@ public class ViewTable extends JFrame {
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addContainerGap()
-					.addComponent(lblCliente, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
+					.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 33, GroupLayout.PREFERRED_SIZE)
 					.addGap(7)
 					.addComponent(scrollPane, GroupLayout.PREFERRED_SIZE, 282, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
@@ -116,5 +117,9 @@ public class ViewTable extends JFrame {
 
 	public JTable getTable() {
 		return table;
+	}
+	
+	public void setLblTitle(String title) {
+		lblTitle.setText(title);
 	}
 }
