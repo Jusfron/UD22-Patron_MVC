@@ -15,13 +15,14 @@ import javax.swing.border.EmptyBorder;
 
 import models.ModelCliente;
 import models.ModelVideo;
+import javax.swing.JComboBox;
 
 public class ViewFormVideos extends JFrame{
 	private JPanel contentPane;
 	private JTextField txtFTitle;
 	private JTextField txtFDirector;
-	private JTextField txtFClientId;
 	private JButton btnGuardar;
+	private JComboBox cmbCliId;
 
 	public ViewFormVideos() {
 		inicializar();
@@ -55,15 +56,13 @@ public class ViewFormVideos extends JFrame{
 		txtFDirector.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		txtFDirector.setColumns(10);
 		
-		txtFClientId = new JTextField();
-		txtFClientId.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtFClientId.setColumns(10);
-		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel lblError = new JLabel("");
 		lblError.setForeground(Color.RED);
+		
+		cmbCliId = new JComboBox();
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
@@ -72,28 +71,27 @@ public class ViewFormVideos extends JFrame{
 					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
 						.addGroup(groupLayout.createSequentialGroup()
 							.addComponent(lblWindowTitle)
-							.addContainerGap(638, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblDirector, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
-									.addGap(69)
-									.addComponent(txtFDirector, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblTitle, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-									.addGap(67)
-									.addComponent(txtFTitle, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
-							.addGap(380))
-						.addGroup(groupLayout.createSequentialGroup()
-							.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtFClientId, 178, 179, Short.MAX_VALUE)
-							.addGap(380))
+							.addContainerGap(640, Short.MAX_VALUE))
 						.addGroup(groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblError)
 								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
-							.addGap(88))))
+							.addGap(88))
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
+								.addGroup(groupLayout.createSequentialGroup()
+									.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+									.addPreferredGap(ComponentPlacement.RELATED)
+									.addComponent(cmbCliId, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addComponent(lblDirector, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+									.addGap(69)
+									.addComponent(txtFDirector, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addComponent(lblTitle, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+									.addGap(67)
+									.addComponent(txtFTitle, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+							.addGap(380))))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -109,14 +107,14 @@ public class ViewFormVideos extends JFrame{
 						.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
 						.addComponent(txtFDirector, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblClientId, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtFClientId, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+						.addComponent(cmbCliId)
+						.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
 					.addGap(141)
 					.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblError)
-					.addContainerGap(51, Short.MAX_VALUE))
+					.addContainerGap(59, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
@@ -124,7 +122,7 @@ public class ViewFormVideos extends JFrame{
 	public void form(ModelVideo video) {
 		txtFTitle.setText(video.getTitle());
 		txtFDirector.setText(video.getDirector());
-		txtFClientId.setText(Integer.toString(video.getCli_id()) );
+		//txtFClientId.setText(Integer.toString(video.getCli_id()) );
 	}
 	
 	
@@ -140,7 +138,8 @@ public class ViewFormVideos extends JFrame{
 		return txtFDirector.getText();
 	}
 
-	public String getTxtFClientId() {
-		return txtFClientId.getText();
+	public JComboBox getCmbCliId() {
+		return cmbCliId;
 	}
+	
 }

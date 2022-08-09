@@ -41,7 +41,7 @@ public class ControllerCliente {
 		viewTable.setLocationRelativeTo(null);
 		viewTable.setVisible(true);
 		
-		fillTable(viewTable);
+		//fillTable(viewTable);
 	}
 	
 	@SuppressWarnings("serial")

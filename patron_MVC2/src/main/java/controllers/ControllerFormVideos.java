@@ -35,14 +35,19 @@ public class ControllerFormVideos implements ActionListener{
 		viewFormVideos.setVisible(true);
 		
 		viewFormVideos.getBtnGuardar().addActionListener(this);
+		
+		for(Integer id : DBConection.getClientsId()) {
+			viewFormVideos.getCmbCliId().addItem(id);
+		}
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(DBConection.lastId("Videos"), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), Integer.parseInt(viewFormVideos.getTxtFClientId()));
+			DBConection.insertData(DBConection.lastId("Videos"), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), (Integer) viewFormVideos.getCmbCliId().getSelectedItem());
 		} else {
-			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),Integer.parseInt(viewFormVideos.getTxtFClientId()) );
+			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),(Integer) viewFormVideos.getCmbCliId().getSelectedItem() );
 		}
 		
 		clienteVideo.setVisible(true);
