@@ -156,6 +156,7 @@ class ListenerCambiarCliente implements ActionListener {
 		ControllerVideos controllerVideos = new ControllerVideos(viewTablenew);
 		controllerVideos.startView();
 		viewTablenew.setTitle("Videos");
+		viewTablenew.setLblTitle("Videos");
 	}
 	
 }
