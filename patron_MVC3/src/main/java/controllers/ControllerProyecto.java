@@ -14,10 +14,10 @@ import models.ModelCliente;
 import models.ModelVideo;
 import views.ViewTable;
 
-public class ControllerVideos {
+public class ControllerProyecto {
 	ViewTable viewTable;
 	
-	public ControllerVideos (ViewTable viewTable) {
+	public ControllerProyecto (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
 		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
@@ -84,7 +84,7 @@ class ListenerEditarVideos implements ActionListener {
 			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
 			viewTable.setVisible(false);
-			ControllerFormVideos controllerFormVideos = new ControllerFormVideos(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
+			ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
 		}
 		
 	}
@@ -110,7 +110,7 @@ class ListenerBorrarVideos implements ActionListener {
 			} else {
 				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Videos")  ;
 				//Update table
-				ControllerVideos.fillTable(viewTable);
+				ControllerProyecto.fillTable(viewTable);
 				
 			}
 		}
@@ -130,7 +130,7 @@ class ListenerCrearVideos implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewTable.setVisible(false);
-		ControllerFormVideos controllerFormVideos = new ControllerFormVideos(viewTable);
+		ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(viewTable);
 	}
 	
 }
@@ -150,7 +150,7 @@ class ListenerCambiarVideos implements ActionListener {
 		viewTable.setVisible(false);
 		viewTable.dispose();
 		ViewTable viewTablenew = new ViewTable();
-		ControllerCliente controllerCliente = new ControllerCliente(viewTablenew);
+		ControllerCientificos controllerCliente = new ControllerCientificos(viewTablenew);
 		controllerCliente.startView();
 		viewTablenew.setTitle("Cliente");
 		viewTablenew.setLblTitle("Cliente");

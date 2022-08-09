@@ -7,13 +7,13 @@ import java.awt.event.ActionListener;
 import models.DBConection;
 import views.ViewFormCliente;
 
-public class ControllerFormCliente implements ActionListener{
+public class ControllerFormCientificos implements ActionListener{
 	
 	private ViewFormCliente viewFormCliente;
 	private Component clienteWindow;
 	private int id = -1;
 	
-	public ControllerFormCliente(int id, Component clienteWindow) {
+	public ControllerFormCientificos(int id, Component clienteWindow) {
 		this.id = id;
 		this.clienteWindow = clienteWindow;
 		
@@ -22,7 +22,7 @@ public class ControllerFormCliente implements ActionListener{
 		viewFormCliente.form(DBConection.getValueCliente(id));
 	}
 	
-	public ControllerFormCliente(Component clienteWindow) {
+	public ControllerFormCientificos(Component clienteWindow) {
 		this.clienteWindow = clienteWindow;
 		
 		initialize();

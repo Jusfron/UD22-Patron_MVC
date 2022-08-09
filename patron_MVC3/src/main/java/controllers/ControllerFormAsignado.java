@@ -8,13 +8,13 @@ import models.DBConection;
 import views.ViewFormCliente;
 import views.ViewFormVideos;
 
-public class ControllerFormVideos implements ActionListener{
+public class ControllerFormAsignado implements ActionListener{
 
 	private ViewFormVideos viewFormVideos;
 	private Component clienteVideo;
 	private int id = -1;
 	
-	public ControllerFormVideos(int id, Component clienteVideo) {
+	public ControllerFormAsignado(int id, Component clienteVideo) {
 		this.id = id;
 		this.clienteVideo = clienteVideo;
 		
@@ -23,7 +23,7 @@ public class ControllerFormVideos implements ActionListener{
 		viewFormVideos.form(DBConection.getValueVideo(id));
 	}
 	
-	public ControllerFormVideos(Component clienteWindow) {
+	public ControllerFormAsignado(Component clienteWindow) {
 		this.clienteVideo = clienteWindow;
 		
 		initialize();

@@ -14,11 +14,11 @@ import models.ModelCliente;
 import views.ViewTable;
 import views.ViewFormCliente;
 
-public class ControllerCliente {
+public class ControllerCientificos {
 	
 	ViewTable viewTable;
 	
-	public ControllerCliente (ViewTable viewTable) {
+	public ControllerCientificos (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
 		viewTable.addListenerBtnEditar(new ListenerEditarCliente(viewTable));
@@ -87,7 +87,7 @@ class ListenerEditarCliente implements ActionListener {
 			JOptionPane.showMessageDialog(viewCliente, "No row selected");
 		} else {
 			viewCliente.setVisible(false);
-			ControllerFormCliente controllerFormCliente = new ControllerFormCliente(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
+			ControllerFormCientificos controllerFormCliente = new ControllerFormCientificos(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
 		}
 		
 	}
@@ -113,7 +113,7 @@ class ListenerBorrarCliente implements ActionListener {
 			} else {
 				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), "Cliente")  ;
 				//Update table
-				ControllerCliente.fillTable(viewCliente);
+				ControllerCientificos.fillTable(viewCliente);
 				
 			}
 		}
@@ -133,7 +133,7 @@ class ListenerCrearCliente implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewCliente.setVisible(false);
-		ControllerFormCliente controllerFormCliente = new ControllerFormCliente(viewCliente);
+		ControllerFormCientificos controllerFormCliente = new ControllerFormCientificos(viewCliente);
 	}
 	
 }
@@ -153,7 +153,7 @@ class ListenerCambiarCliente implements ActionListener {
 		viewTable.setVisible(false);
 		viewTable.dispose();
 		ViewTable viewTablenew = new ViewTable();
-		ControllerVideos controllerVideos = new ControllerVideos(viewTablenew);
+		ControllerProyecto controllerVideos = new ControllerProyecto(viewTablenew);
 		controllerVideos.startView();
 		viewTablenew.setTitle("Videos");
 		viewTablenew.setLblTitle("Videos");
