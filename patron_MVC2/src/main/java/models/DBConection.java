@@ -174,6 +174,34 @@ public class DBConection {
 		return videos;
 		
 	}
+	
+	// Function for list all the ids of the table "Client"
+	public static ArrayList<Integer> getClientsId() {
+		ArrayList<Integer> clientesId = new ArrayList<>();
+		
+		try {
+			connection();
+			String queryDB = "USE " + db + ";";
+			Statement stdb = connection.createStatement();
+			stdb.executeUpdate(queryDB);
+			
+			String querySl = "SELECT id FROM Cliente;";
+			Statement st = connection.createStatement();
+			ResultSet resultSet;
+			resultSet = st.executeQuery(querySl);
+			
+			while(resultSet.next()) {
+					clientesId.add(resultSet.getInt(1));
+			}
+			
+			closeConnection();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return clientesId;
+		
+	}
 
 	// Function to upadate records into the table "Cliente".
 	public static void updateData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
