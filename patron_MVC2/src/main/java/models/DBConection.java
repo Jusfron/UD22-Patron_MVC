@@ -257,8 +257,7 @@ public class DBConection {
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);		
-			resultSet.next();	
-			resultSet = st.executeQuery(querySl);			
+			resultSet.next();				
 			video.setId(resultSet.getInt(1));
 			video.setTitle(resultSet.getString(2));
 			video.setDirector(resultSet.getString(3));
