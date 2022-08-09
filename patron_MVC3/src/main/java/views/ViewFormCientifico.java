@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import models.ModelCliente;
+import models.ModelCientifico;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Color;
 
-public class ViewFormCliente extends JFrame{
+public class ViewFormCientifico extends JFrame{
 	
 	private JPanel contentPane;
 	private JTextField txtFNombre;
@@ -27,7 +27,7 @@ public class ViewFormCliente extends JFrame{
 	private JTextField txtFFecha;
 	private JButton btnGuardar;
 
-	public ViewFormCliente() {
+	public ViewFormCientifico() {
 		inicializar();
 	}
 	
@@ -160,7 +160,7 @@ public class ViewFormCliente extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void form(ModelCliente cliente) {
+	public void form(ModelCientifico cliente) {
 		txtFNombre.setText(cliente.getNombre());
 		txtFApellido.setText(cliente.getApellido());
 		txtFDireccion.setText(cliente.getDireccion());

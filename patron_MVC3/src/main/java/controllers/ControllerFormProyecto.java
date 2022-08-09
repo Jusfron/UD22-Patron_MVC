@@ -5,12 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.DBConection;
-import views.ViewFormCliente;
-import views.ViewFormVideos;
+import views.ViewFormCientifico;
+import views.ViewFormProyecto;
 
 public class ControllerFormProyecto implements ActionListener{
 
-	private ViewFormVideos viewFormVideos;
+	private ViewFormProyecto viewFormVideos;
 	private Component clienteVideo;
 	private int id = -1;
 	
@@ -30,7 +30,7 @@ public class ControllerFormProyecto implements ActionListener{
 	}
 	
 	private void initialize() {
-		viewFormVideos = new ViewFormVideos();
+		viewFormVideos = new ViewFormProyecto();
 		viewFormVideos.setLocationRelativeTo(clienteVideo);
 		viewFormVideos.setVisible(true);
 		

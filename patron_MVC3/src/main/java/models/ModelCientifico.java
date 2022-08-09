@@ -1,6 +1,6 @@
 package models;
 
-public class ModelCliente {
+public class ModelCientifico {
 
 	private int id;
 	private String nombre;
@@ -10,12 +10,12 @@ public class ModelCliente {
 	private String date;
 	
 //	constructor with all parameters by default
-	public ModelCliente() {
+	public ModelCientifico() {
 	}
 	
 	
 //	constructor with all parameters but date divided by year, month, day
-	public ModelCliente(int id, String nombre, String apellido, String direccion, int dni, int day, int month, int year) {
+	public ModelCientifico(int id, String nombre, String apellido, String direccion, int dni, int day, int month, int year) {
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;

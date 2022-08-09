@@ -13,18 +13,18 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.border.EmptyBorder;
 
-import models.ModelCliente;
-import models.ModelVideo;
+import models.ModelCientifico;
+import models.ModelProyecto;
 import javax.swing.JComboBox;
 
-public class ViewFormVideos extends JFrame{
+public class ViewFormProyecto extends JFrame{
 	private JPanel contentPane;
 	private JTextField txtFTitle;
 	private JTextField txtFDirector;
 	private JButton btnGuardar;
 	private JComboBox cmbCliId;
 
-	public ViewFormVideos() {
+	public ViewFormProyecto() {
 		inicializar();
 	}
 	
@@ -119,7 +119,7 @@ public class ViewFormVideos extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void form(ModelVideo video) {
+	public void form(ModelProyecto video) {
 		txtFTitle.setText(video.getTitle());
 		txtFDirector.setText(video.getDirector());
 		//txtFClientId.setText(Integer.toString(video.getCli_id()) );

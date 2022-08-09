@@ -1,16 +1,16 @@
 package models;
 
-public class ModelVideo {
+public class ModelAsignado {
 	private int id;
 	private String title;
 	private String director;
 	private int cli_id;
 	
 //	constructor with all parameters by default
-	public ModelVideo() {
+	public ModelAsignado() {
 	}
 // constructor with all parameters
-	public ModelVideo(int id, String title, String director, int cli_id) {
+	public ModelAsignado(int id, String title, String director, int cli_id) {
 		this.id = id;
 		this.title = title;
 		this.director = director;

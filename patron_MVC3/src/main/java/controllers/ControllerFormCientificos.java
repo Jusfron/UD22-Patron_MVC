@@ -5,11 +5,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import models.DBConection;
-import views.ViewFormCliente;
+import views.ViewFormCientifico;
 
 public class ControllerFormCientificos implements ActionListener{
 	
-	private ViewFormCliente viewFormCliente;
+	private ViewFormCientifico viewFormCliente;
 	private Component clienteWindow;
 	private int id = -1;
 	
@@ -29,7 +29,7 @@ public class ControllerFormCientificos implements ActionListener{
 	}
 	
 	private void initialize() {
-		viewFormCliente = new ViewFormCliente();
+		viewFormCliente = new ViewFormCientifico();
 		viewFormCliente.setLocationRelativeTo(clienteWindow);
 		viewFormCliente.setVisible(true);
 		

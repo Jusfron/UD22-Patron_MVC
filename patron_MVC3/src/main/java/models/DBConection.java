@@ -108,8 +108,8 @@ public class DBConection {
 	}
 	
 	// Function for list all the records of the table "Client"
-	public static ArrayList<ModelCliente> getValuesClientes() {
-		ArrayList<ModelCliente> clientes = new ArrayList<>();
+	public static ArrayList<ModelCientifico> getValuesClientes() {
+		ArrayList<ModelCientifico> clientes = new ArrayList<>();
 		
 		try {
 			connection();
@@ -123,7 +123,7 @@ public class DBConection {
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-				ModelCliente cliente=new ModelCliente();
+				ModelCientifico cliente=new ModelCientifico();
 					cliente.setId(resultSet.getInt(1));
 					cliente.setNombre(resultSet.getString(2));
 					cliente.setApellido(resultSet.getString(3));
@@ -143,8 +143,8 @@ public class DBConection {
 	}
 	
 	// Function for list all de records of the table "Video"
-	public static ArrayList<ModelVideo> getValuesVideos() {
-		ArrayList<ModelVideo> videos = new ArrayList<>();
+	public static ArrayList<ModelProyecto> getValuesVideos() {
+		ArrayList<ModelProyecto> videos = new ArrayList<>();
 		
 		try {
 			connection();
@@ -158,7 +158,7 @@ public class DBConection {
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-				ModelVideo video=new ModelVideo();
+				ModelProyecto video=new ModelProyecto();
 				video.setId(resultSet.getInt(1));
 				video.setTitle(resultSet.getString(2));
 				video.setDirector(resultSet.getString(3));
@@ -244,8 +244,8 @@ public class DBConection {
 	}
 
 	// Function to get the specified record from table "Client"
-	public static ModelCliente getValueCliente(int id) {
-		ModelCliente cliente=new ModelCliente();
+	public static ModelCientifico getValueCliente(int id) {
+		ModelCientifico cliente=new ModelCientifico();
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
@@ -273,8 +273,8 @@ public class DBConection {
 	}
 
 	// Function to get the specified record from table "Videos"
-	public static ModelVideo getValueVideo(int id) {
-		ModelVideo video =new ModelVideo();
+	public static ModelProyecto getValueVideo(int id) {
+		ModelProyecto video =new ModelProyecto();
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";

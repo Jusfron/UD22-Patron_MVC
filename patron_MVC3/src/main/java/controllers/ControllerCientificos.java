@@ -10,9 +10,9 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
-import models.ModelCliente;
+import models.ModelCientifico;
 import views.ViewTable;
-import views.ViewFormCliente;
+import views.ViewFormCientifico;
 
 public class ControllerCientificos {
 	
@@ -46,7 +46,7 @@ public class ControllerCientificos {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelCliente> clientes = DBConection.getValuesClientes();
+		ArrayList<ModelCientifico> clientes = DBConection.getValuesClientes();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[clientes.size()][6] ,
 				new String[] {

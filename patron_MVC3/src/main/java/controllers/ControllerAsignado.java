@@ -10,8 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
-import models.ModelCliente;
-import models.ModelVideo;
+import models.ModelCientifico;
+import models.ModelProyecto;
 import views.ViewTable;
 
 public class ControllerAsignado {
@@ -45,7 +45,7 @@ public class ControllerAsignado {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelVideo> videos = DBConection.getValuesVideos();
+		ArrayList<ModelProyecto> videos = DBConection.getValuesVideos();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[videos.size()][4] ,
 				new String[] {
