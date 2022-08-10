@@ -16,6 +16,7 @@ public class ModelProyecto {
 		this.horas = horas;
 	}
 	
+//	Getters and setters
 	public int getId() {
 		return id;
 	}
@@ -40,6 +41,7 @@ public class ModelProyecto {
 		this.horas = horas;
 	}
 	
+//	toString method	
 	@Override
 	public String toString() {
 		return "ModelProyecto [id=" + id + ", nombre=" + nombre + ", horas=" + horas + "]";
