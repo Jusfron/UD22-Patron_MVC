@@ -20,11 +20,11 @@ public class ModelAsignado {
 		return id;
 	}
 
-	public String getcientifico() {
+	public String getCientifico() {
 		return cientifico;
 	}
 
-	public String getproyecto() {
+	public String getProyecto() {
 		return proyecto;
 	}
 
@@ -33,11 +33,11 @@ public class ModelAsignado {
 		this.id = id;
 	}
 
-	public void setcientifico(String cientifico) {
+	public void setCientifico(String cientifico) {
 		this.cientifico = cientifico;
 	}
 
-	public void setproyecto(String proyecto) {
+	public void setProyecto(String proyecto) {
 		this.proyecto = proyecto;
 	}
 

@@ -19,7 +19,7 @@ public class ControllerFormAsignado implements ActionListener{
 		
 		initialize();
 		
-		viewFormAsignado.form(DBConection.getValueAsignado(id));
+		viewFormAsignado.form(DBConection.getValueAsignadoA(id));
 	}
 	
 	public ControllerFormAsignado(Component clienteWindow) {
@@ -35,10 +35,10 @@ public class ControllerFormAsignado implements ActionListener{
 		
 		viewFormAsignado.getBtnGuardar().addActionListener(this);
 		
-		for(Integer id : DBConection.getCientificoId()) {
+		for(Integer id : DBConection.getCientifico()) {
 			viewFormAsignado.getCmbCientifico().addItem(id);
 		}
-		for(Integer id : DBConection.getProyectoId()) {
+		for(Integer id : DBConection.getProyecto()) {
 			viewFormAsignado.getCmbProyecto().addItem(id);
 		}
 		

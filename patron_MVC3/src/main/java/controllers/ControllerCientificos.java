@@ -61,8 +61,13 @@ public class ControllerCientificos {
 			}));
 		
 		for(int i = 0; i < Cientifico.size(); i++) {
+<<<<<<< HEAD
 			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getDNI() , i, 0);
 			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getNomApels(), i, 1);
+=======
+			viewTable.getTable().getModel().setValueAt(Integer.toString(Cientifico.get(i).getDni()) , i, 0);
+			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getNombre(), i, 1);
+>>>>>>> branch 'main' of https://github.com/Jusfron/UD22-Patron_MVC.git
 
 		}
 	}
