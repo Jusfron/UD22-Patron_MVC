@@ -36,7 +36,7 @@ public class ControllerFormAsignado implements ActionListener{
 		for(String id : DBConection.getId("Cientificos")) {
 			viewFormAsignado.getCmbCientifico().addItem(id);
 		}
-		for(String id : DBConection.getId("Cientificos")) {
+		for(String id : DBConection.getId("Proyecto")) {
 			viewFormAsignado.getCmbProyecto().addItem(id);
 		}
 		
