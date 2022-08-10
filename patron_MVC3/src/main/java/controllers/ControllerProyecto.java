@@ -35,7 +35,7 @@ public class ControllerProyecto {
 	}
 	
 	public void startView() {
-		viewTable.setTitle("Videos");
+		viewTable.setTitle("Proyectos");
 		viewTable.setLocationRelativeTo(null);
 		viewTable.setVisible(true);
 		
@@ -48,7 +48,7 @@ public class ControllerProyecto {
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[videos.size()][4] ,
 				new String[] {
-					"id", "title", "director", "cli_id"
+					"id", "Nombre", "Horas"
 				}) {
 
 			    @Override

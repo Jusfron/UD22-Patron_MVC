@@ -36,7 +36,7 @@ public class ViewFormProyecto extends JFrame{
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		
-		JLabel lblWindowTitle = new JLabel("Videos");
+		JLabel lblWindowTitle = new JLabel("Proyecto");
 		lblWindowTitle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
 		JLabel lblId = new JLabel("ID: ");
