@@ -19,10 +19,10 @@ public class ControllerProyecto {
 	public ControllerProyecto (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
-		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
-		viewTable.addListenerBtnBorrar(new ListenerBorrarVideos(viewTable));
-		viewTable.addListenerBtnCrear(new ListenerCrearVideos(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos(viewTable));
+		viewTable.addListenerBtnEditar(new ListenerEditarProyecto(viewTable));
+		viewTable.addListenerBtnBorrar(new ListenerBorrarProyecto(viewTable));
+		viewTable.addListenerBtnCrear(new ListenerCrearProyecto(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarProyecto(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -60,19 +60,18 @@ public class ControllerProyecto {
 		
 		for(int i = 0; i < videos.size(); i++) {
 			viewTable.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getTitle(), i, 1);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getDirector(), i, 2);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getCli_id(), i, 3);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
+			viewTable.getTable().getModel().setValueAt(videos.get(i).getHoras(), i, 2);
 		}
 	}
 
 }
 
-class ListenerEditarVideos implements ActionListener {
+class ListenerEditarProyecto implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerEditarVideos(ViewTable viewTable) {
+	public ListenerEditarProyecto(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -90,11 +89,11 @@ class ListenerEditarVideos implements ActionListener {
 	
 }
 
-class ListenerBorrarVideos implements ActionListener {
+class ListenerBorrarProyecto implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerBorrarVideos(ViewTable viewTable) {
+	public ListenerBorrarProyecto(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -117,11 +116,11 @@ class ListenerBorrarVideos implements ActionListener {
 	
 }
 
-class ListenerCrearVideos implements ActionListener {
+class ListenerCrearProyecto implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerCrearVideos(ViewTable viewTable) {
+	public ListenerCrearProyecto(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -134,11 +133,11 @@ class ListenerCrearVideos implements ActionListener {
 	
 }
 
-class ListenerCambiarVideos implements ActionListener {
+class ListenerCambiarProyecto implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerCambiarVideos(ViewTable viewTable) {
+	public ListenerCambiarProyecto(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
