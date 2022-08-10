@@ -10,34 +10,35 @@ import views.ViewFormProyecto;
 
 public class ControllerFormAsignado implements ActionListener{
 
-	private ViewFormProyecto viewFormVideos;
-	private Component clienteVideo;
+	private ViewFormAsignado viewFormAsignado;
+	private Component tableFrame;
 	private int id = -1;
 	
-	public ControllerFormAsignado(int id, Component clienteVideo) {
+	public ControllerFormAsignado(int id, Component tableFrame) {
 		this.id = id;
-		this.clienteVideo = clienteVideo;
+		this.tableFrame = tableFrame;
 		
 		initialize();
 		
-		viewFormVideos.form(DBConection.getValueVideo(id));
+		viewFormAsignado.form(DBConection.getValueAsignado(id));
 	}
 	
 	public ControllerFormAsignado(Component clienteWindow) {
-		this.clienteVideo = clienteWindow;
+		this.tableFrame = clienteWindow;
 		
 		initialize();
 	}
 	
 	private void initialize() {
-		viewFormVideos = new ViewFormProyecto();
-		viewFormVideos.setLocationRelativeTo(clienteVideo);
-		viewFormVideos.setVisible(true);
+		viewFormAsignado = new ViewFormAsignado();
+		viewFormAsignado.setLocationRelativeTo(tableFrame);
+		viewFormAsignado.setVisible(true);
 		
-		viewFormVideos.getBtnGuardar().addActionListener(this);
+		viewFormAsignado.getBtnGuardar().addActionListener(this);
 		
-		for(Integer id : DBConection.getClientsId()) {
-			viewFormVideos.getCmbCliId().addItem(id);
+		for(Integer id : DBConection.getAsignadoId()) {
+			viewFormAsignado.getCmbCientifico().addItem(id);
+			viewFormAsignado.getCmbProyecto().addItem(id);
 		}
 		
 	}
@@ -45,13 +46,13 @@ public class ControllerFormAsignado implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(DBConection.lastId("Videos"), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), (Integer) viewFormVideos.getCmbCliId().getSelectedItem());
+			DBConection.insertData(DBConection.lastId("Asignado"), (Integer) viewFormVideos.getCmbProyecto().getSelectedItem() );
 		} else {
-			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),(Integer) viewFormVideos.getCmbCliId().getSelectedItem() );
+			DBConection.updateData(id, (Integer) viewFormVideos.getCmbCientifico().getSelectedItem(), (Integer) viewFormVideos.getCmbProyecto().getSelectedItem() );
 		}
 		
-		clienteVideo.setVisible(true);
-		viewFormVideos.dispose();
+		tableFrame.setVisible(true);
+		viewFormAsignado.dispose();
 	}
 
 }
