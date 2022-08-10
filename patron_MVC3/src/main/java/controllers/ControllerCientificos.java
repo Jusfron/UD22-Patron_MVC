@@ -85,7 +85,7 @@ class ListenerEditarCientifico implements ActionListener {
 			JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 		} else {
 			viewCientifico.setVisible(false);
-//			ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos(Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), viewCientifico);
+			ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0)), viewCientifico);
 		}
 		
 	}
@@ -109,7 +109,7 @@ class ListenerBorrarCientifico implements ActionListener {
 			if(viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), viewCientifico.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), "Cientifico")  ;
+				DBConection.deleteData((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) ), "Cientificos")  ;
 				//Update table
 				ControllerCientificos.fillTable(viewCientifico);
 				
@@ -154,8 +154,8 @@ class ListenerCambiarCientifico implements ActionListener {
 		ViewTable viewTablenew = new ViewTable();
 		ControllerProyecto controllerVideos = new ControllerProyecto(viewTablenew);
 		controllerVideos.startView();
-		viewTablenew.setTitle("Videos");
-		viewTablenew.setLblTitle("Videos");
+		viewTablenew.setTitle("Proyecto");
+		viewTablenew.setLblTitle("Proyecto");
 	}
 	
 }

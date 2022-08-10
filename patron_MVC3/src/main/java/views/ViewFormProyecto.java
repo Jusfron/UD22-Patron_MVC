@@ -126,7 +126,6 @@ public class ViewFormProyecto extends JFrame{
 		txtFId.setEditable(false);
 		txtFNombre.setText(proyecto.getNombre());
 		txtFHoras.setText(String.valueOf(proyecto.getHoras()));
-		//txtFClientId.setText(Integer.toString(video.getCli_id()) );
 	}
 	
 	

@@ -51,7 +51,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="INSERT INTO Cientificos VALUES ("+dni+",'"+nomApels+"');";
+			sql="INSERT INTO Cientificos VALUES ('"+dni+"','"+nomApels+"');";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -72,7 +72,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="INSERT INTO Proyecto VALUES ("+id+",'"+nombre+"','"+horas+"');";
+			sql="INSERT INTO Proyecto VALUES ('"+id+"','"+nombre+"','"+horas+"');";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -102,9 +102,33 @@ public class DBConection {
 			e.printStackTrace();
 		}
 	}
+	
+	// Function for delete records of any table
+		public static void deleteData(int id, String table) {
+
+			try {
+				connection();
+				String sql="USE "+db+";";
+				Statement stdb;
+				stdb = connection.createStatement();
+				stdb.executeUpdate(sql);
+				
+				String query;
+				query = "DELETE FROM "+table+" WHERE id = '" + id + "';";
+				
+				
+				Statement st = connection.createStatement();
+				st.executeUpdate(query);
+				closeConnection();
+				System.out.println("Registro borrado");
+			} catch (SQLException e) {
+				System.out.println("Error al borrar los datos");
+				e.printStackTrace();
+			}	
+		}
 
 	// Function for delete records of any table
-	public static void deleteData(int id, String table) {
+	public static void deleteData(String id, String table) {
 
 		try {
 			connection();
@@ -114,7 +138,11 @@ public class DBConection {
 			stdb.executeUpdate(sql);
 			
 			String query;
-			query = "DELETE FROM "+table+" WHERE id = '" + id + "';";
+			if(table.equals("Cientificos")) {
+				query = "DELETE FROM "+table+" WHERE dni = '" + id + "';";
+			}else {
+				query = "DELETE FROM "+table+" WHERE id = '" + id + "';";
+			}
 			
 			Statement st = connection.createStatement();
 			st.executeUpdate(query);
@@ -123,8 +151,7 @@ public class DBConection {
 		} catch (SQLException e) {
 			System.out.println("Error al borrar los datos");
 			e.printStackTrace();
-		}
-		
+		}	
 	}
 	
 	// Function for list all the records of the table "Cientificos"
@@ -231,7 +258,7 @@ public class DBConection {
 			String queryDB = "USE " + db + ";";
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
-			if(table.equals("Ceintificos")) {
+			if(table.equals("Cientificos")) {
 				querySl = "SELECT dni FROM "+table+";";
 			}else {
 				querySl = "SELECT id FROM "+table+";";
@@ -263,7 +290,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Cientificos SET dni = '"+dni+"', NomApels = '"+nomApels+"' WHERE dni = "+dni+";";
+			sql="UPDATE Cientificos SET dni = '"+dni+"', NomApels = '"+nomApels+"' WHERE dni = '"+dni+"';";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -283,7 +310,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Proyectos SET id = '"+id+"', Nombre = '"+nombre+"',Horas = '"+horas+"' WHERE id = "+id+";";
+			sql="UPDATE Proyecto SET id = '"+id+"', Nombre = '"+nombre+"',Horas = '"+horas+"' WHERE id = '"+id+"';";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -323,7 +350,7 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cientifico where dni="+dni+";";
+			String querySl = "SELECT * FROM Cientificos where dni="+dni+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);			
@@ -348,7 +375,7 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Proyecto where id="+id+";";
+			String querySl = "SELECT * FROM Proyecto where id='"+id+"';";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);		

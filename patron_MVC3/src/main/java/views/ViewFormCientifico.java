@@ -105,8 +105,9 @@ public class ViewFormCientifico extends JFrame{
 	}
 	
 	public void form(ModelCientifico cientifico) {
-		txtFNombre.setText(cientifico.getDNI());
+		txtFNombre.setText(cientifico.getNomApels());
 		txtFDNI.setText(String.valueOf(cientifico.getDNI()));
+		txtFDNI.setEditable(false);
 	}
 	
 	

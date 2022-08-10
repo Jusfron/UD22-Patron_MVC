@@ -106,7 +106,7 @@ class ListenerBorrarProyecto implements ActionListener {
 			if(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), viewTable.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewTable, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Videos")  ;
+				DBConection.deleteData((String)(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0)), "Proyecto")  ;
 				//Update table
 				ControllerProyecto.fillTable(viewTable);
 				
@@ -150,8 +150,8 @@ class ListenerCambiarProyecto implements ActionListener {
 		ViewTable viewTablenew = new ViewTable();
 		ControllerAsignado controllerAsignado = new ControllerAsignado(viewTablenew);
 		controllerAsignado.startView();
-		viewTablenew.setTitle("Cliente");
-		viewTablenew.setLblTitle("Cliente");
+		viewTablenew.setTitle("Asignados");
+		viewTablenew.setLblTitle("Asignados");
 	}
 	
 }
