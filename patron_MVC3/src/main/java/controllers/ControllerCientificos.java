@@ -46,7 +46,7 @@ public class ControllerCientificos {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelCientifico> Cientifico = DBConection.getValuesCientifico();
+		ArrayList<ModelCientifico> Cientifico = DBConection.getValuesCientificos();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[Cientifico.size()][6] ,
 				new String[] {
@@ -61,7 +61,7 @@ public class ControllerCientificos {
 			}));
 		
 		for(int i = 0; i < Cientifico.size(); i++) {
-			viewTable.getTable().getModel().setValueAt(Integer.toString(Cientifico.get(i).getDNI()) , i, 0);
+			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getDNI() , i, 0);
 			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getNomApels(), i, 1);
 
 		}
