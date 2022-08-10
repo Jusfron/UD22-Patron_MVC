@@ -10,7 +10,7 @@ import views.ViewFormProyecto;
 
 public class ControllerFormProyecto implements ActionListener{
 
-	private ViewFormProyecto viewFormVideos;
+	private ViewFormProyecto viewFormProyecto;
 	private Component clienteVideo;
 	private String id = "-1";
 	
@@ -20,7 +20,7 @@ public class ControllerFormProyecto implements ActionListener{
 		
 		initialize();
 		
-		viewFormVideos.form(DBConection.getValueProyecto(id));
+		viewFormProyecto.form(DBConection.getValueProyecto(id));
 	}
 	
 	public ControllerFormProyecto(Component clienteWindow) {
@@ -30,24 +30,24 @@ public class ControllerFormProyecto implements ActionListener{
 	}
 	
 	private void initialize() {
-		viewFormVideos = new ViewFormProyecto();
-		viewFormVideos.setLocationRelativeTo(clienteVideo);
-		viewFormVideos.setVisible(true);
+		viewFormProyecto = new ViewFormProyecto();
+		viewFormProyecto.setLocationRelativeTo(clienteVideo);
+		viewFormProyecto.setVisible(true);
 		
-		viewFormVideos.getBtnGuardar().addActionListener(this);
+		viewFormProyecto.getBtnGuardar().addActionListener(this);
 		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id.equals("-1")) {
-			DBConection.insertData(viewFormVideos.getTxtFId().getText(), viewFormVideos.getTxtFNombre().getText(),Integer.parseInt(viewFormVideos.getTxtFHoras().getText()));
+			DBConection.insertData(viewFormProyecto.getTxtFId().getText(), viewFormProyecto.getTxtFNombre().getText(),Integer.parseInt(viewFormProyecto.getTxtFHoras().getText()));
 		} else {
-			DBConection.updateData(id, viewFormVideos.getTxtFNombre().getText(),Integer.parseInt(viewFormVideos.getTxtFHoras().getText()));
+			DBConection.updateData(id, viewFormProyecto.getTxtFNombre().getText(),Integer.parseInt(viewFormProyecto.getTxtFHoras().getText()));
 		}
 		
 		clienteVideo.setVisible(true);
-		viewFormVideos.dispose();
+		viewFormProyecto.dispose();
 	}
 
 }
