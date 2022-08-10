@@ -12,15 +12,15 @@ public class ControllerFormProyecto implements ActionListener{
 
 	private ViewFormProyecto viewFormVideos;
 	private Component clienteVideo;
-	private int id = -1;
+	private String id = "-1";
 	
-	public ControllerFormProyecto(int id, Component clienteVideo) {
+	public ControllerFormProyecto(String id, Component clienteVideo) {
 		this.id = id;
 		this.clienteVideo = clienteVideo;
 		
 		initialize();
 		
-		viewFormVideos.form(DBConection.getValueVideo(id));
+		viewFormVideos.form(DBConection.getValueProyecto(id));
 	}
 	
 	public ControllerFormProyecto(Component clienteWindow) {
@@ -36,18 +36,14 @@ public class ControllerFormProyecto implements ActionListener{
 		
 		viewFormVideos.getBtnGuardar().addActionListener(this);
 		
-		for(Integer id : DBConection.getClientsId()) {
-			viewFormVideos.getCmbCliId().addItem(id);
-		}
-		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(id == -1) {
-			DBConection.insertData(DBConection.lastId("Videos"), viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(), (Integer) viewFormVideos.getCmbCliId().getSelectedItem());
+		if(id.equals("-1")) {
+			DBConection.insertData(viewFormVideos.getTxtFId().getText(), viewFormVideos.getTxtFNombre().getText(),Integer.parseInt(viewFormVideos.getTxtFHoras().getText()));
 		} else {
-			DBConection.updateData(id, viewFormVideos.getTxtFTitle(), viewFormVideos.getTxtFDirector(),(Integer) viewFormVideos.getCmbCliId().getSelectedItem() );
+			DBConection.updateData(id, viewFormVideos.getTxtFNombre().getText(),Integer.parseInt(viewFormVideos.getTxtFHoras().getText()));
 		}
 		
 		clienteVideo.setVisible(true);

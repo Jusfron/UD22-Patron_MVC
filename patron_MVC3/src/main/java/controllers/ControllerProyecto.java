@@ -82,7 +82,7 @@ class ListenerEditarProyecto implements ActionListener {
 			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
 			viewTable.setVisible(false);
-			ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
+			ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) ), viewTable);
 		}
 		
 	}
