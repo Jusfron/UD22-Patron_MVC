@@ -144,7 +144,7 @@ public class DBConection {
 			
 			while(resultSet.next()) {
 				ModelCientifico cientifico=new ModelCientifico();
-				cientifico.setId(resultSet.getString(1));
+				cientifico.setDni(resultSet.getInt(1));
 				cientifico.setNombre(resultSet.getString(2));
 				cientificos.add(cientifico);
 			}
