@@ -10,8 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
-import models.ModelCientifico;
-import models.ModelProyecto;
+import models.ModelAsignado;
 import views.ViewTable;
 
 public class ControllerAsignado {
