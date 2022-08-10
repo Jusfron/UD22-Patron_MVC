@@ -85,7 +85,7 @@ class ListenerEditarCientifico implements ActionListener {
 			JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 		} else {
 			viewCientifico.setVisible(false);
-			ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos(Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), viewCientifico);
+//			ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos(Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), viewCientifico);
 		}
 		
 	}

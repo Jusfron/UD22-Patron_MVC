@@ -11,9 +11,9 @@ public class ControllerFormCientificos implements ActionListener{
 	
 	private ViewFormCientifico viewFormCientifico;
 	private Component CientificoWindow;
-	private int DNI = -1;
+	private String DNI = "";
 	
-	public ControllerFormCientificos(int DNI, Component CientificoWindow) {
+	public ControllerFormCientificos(String DNI, Component CientificoWindow) {
 		this.DNI = DNI;
 		this.CientificoWindow = CientificoWindow;
 		
@@ -38,14 +38,14 @@ public class ControllerFormCientificos implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(DNI == -1) {
-			DBConection.insertData(DBConection.lastDNI("Cientifico"), viewFormCientifico.getTxtFNomApels());
-		} else {
-			DBConection.updateData(DNI, viewFormCientifico.getTxtFNomApels());
-		}
-		
-		CientificoWindow.setVisible(true);
-		viewFormCientifico.dispose();
+//		if(DNI == -1) {
+//			DBConection.insertData(DBConection.lastDNI("Cientifico"), viewFormCientifico.getTxtFNomApels());
+//		} else {
+//			DBConection.updateData(DNI, viewFormCientifico.getTxtFNomApels());
+//		}
+//		
+//		CientificoWindow.setVisible(true);
+//		viewFormCientifico.dispose();
 	}
 
 }
