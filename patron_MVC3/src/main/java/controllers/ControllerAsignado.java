@@ -107,7 +107,7 @@ class ListenerBorrarAsignado implements ActionListener {
 			if(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), viewTable.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewTable, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Asignado_a")  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "AsignadoA")  ;
 				//Update table
 				ControllerAsignado.fillTable(viewTable);
 				
