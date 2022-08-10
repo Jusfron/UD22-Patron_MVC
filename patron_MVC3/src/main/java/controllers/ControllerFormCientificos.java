@@ -9,45 +9,43 @@ import views.ViewFormCientifico;
 
 public class ControllerFormCientificos implements ActionListener{
 	
-	private ViewFormCientifico viewFormCliente;
-	private Component clienteWindow;
-	private int id = -1;
+	private ViewFormCientifico viewFormCientifico;
+	private Component CientificoWindow;
+	private int DNI = -1;
 	
-	public ControllerFormCientificos(int id, Component clienteWindow) {
-		this.id = id;
-		this.clienteWindow = clienteWindow;
+	public ControllerFormCientificos(int DNI, Component CientificoWindow) {
+		this.DNI = DNI;
+		this.CientificoWindow = CientificoWindow;
 		
 		initialize();
 		
-		viewFormCliente.form(DBConection.getValueCliente(id));
+		viewFormCientifico.form(DBConection.getValueCientifico(DNI));
 	}
 	
-	public ControllerFormCientificos(Component clienteWindow) {
-		this.clienteWindow = clienteWindow;
+	public ControllerFormCientificos(Component CientificoWindow) {
+		this.CientificoWindow = CientificoWindow;
 		
 		initialize();
 	}
 	
 	private void initialize() {
-		viewFormCliente = new ViewFormCientifico();
-		viewFormCliente.setLocationRelativeTo(clienteWindow);
-		viewFormCliente.setVisible(true);
+		viewFormCientifico = new ViewFormCientifico();
+		viewFormCientifico.setLocationRelativeTo(CientificoWindow);
+		viewFormCientifico.setVisible(true);
 		
-		viewFormCliente.getBtnGuardar().addActionListener(this);
+		viewFormCientifico.getBtnGuardar().addActionListener(this);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(id == -1) {
-			DBConection.insertData(DBConection.lastId("Cliente"), viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
-					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
+		if(DNI == -1) {
+			DBConection.insertData(DBConection.lastDNI("Cientifico"), viewFormCientifico.getTxtFNomApels());
 		} else {
-			DBConection.updateData(id, viewFormCliente.getTxtFNombre(), viewFormCliente.getTxtFApellido(), viewFormCliente.getTxtFDireccion(), 
-					viewFormCliente.getTxtFDNI(), viewFormCliente.getTxtFFecha());
+			DBConection.updateData(DNI, viewFormCientifico.getTxtFNomApels());
 		}
 		
-		clienteWindow.setVisible(true);
-		viewFormCliente.dispose();
+		CientificoWindow.setVisible(true);
+		viewFormCientifico.dispose();
 	}
 
 }
