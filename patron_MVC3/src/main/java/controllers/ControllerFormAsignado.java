@@ -18,8 +18,6 @@ public class ControllerFormAsignado implements ActionListener{
 		this.tableFrame = tableFrame;
 		
 		initialize();
-		
-		viewFormAsignado.form(DBConection.getValueAsignadoA(id));
 	}
 	
 	public ControllerFormAsignado(Component clienteWindow) {
@@ -35,10 +33,10 @@ public class ControllerFormAsignado implements ActionListener{
 		
 		viewFormAsignado.getBtnGuardar().addActionListener(this);
 		
-		for(Integer id : DBConection.getCientifico()) {
+		for(String id : DBConection.getId("Cientificos")) {
 			viewFormAsignado.getCmbCientifico().addItem(id);
 		}
-		for(Integer id : DBConection.getProyecto()) {
+		for(String id : DBConection.getId("Cientificos")) {
 			viewFormAsignado.getCmbProyecto().addItem(id);
 		}
 		
@@ -47,9 +45,9 @@ public class ControllerFormAsignado implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(id == -1) {
-			DBConection.insertData(DBConection.lastId("Asignado"), (Integer) viewFormAsignado.getCmbProyecto().getSelectedItem() );
+			DBConection.insertData(DBConection.lastId("Asignado"),(String) viewFormAsignado.getCmbCientifico().getSelectedItem(),(String) viewFormAsignado.getCmbProyecto().getSelectedItem() );
 		} else {
-			DBConection.updateData(id, (Integer) viewFormAsignado.getCmbCientifico().getSelectedItem(), (Integer) viewFormAsignado.getCmbProyecto().getSelectedItem() );
+			DBConection.updateData(id,(String) viewFormAsignado.getCmbCientifico().getSelectedItem(),(String) viewFormAsignado.getCmbProyecto().getSelectedItem()  );
 		}
 		
 		tableFrame.setVisible(true);

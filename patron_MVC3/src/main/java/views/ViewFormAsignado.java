@@ -101,12 +101,6 @@ public class ViewFormAsignado extends JFrame{
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void form(ModelProyecto video) {
-		//txtFTitle.setText(video.getTitle());
-		//txtFDirector.setText(video.getDirector());
-		//txtFClientId.setText(Integer.toString(video.getCli_id()) );
-	}
-	
 	
 	public JButton getBtnGuardar() {
 		return btnGuardar;

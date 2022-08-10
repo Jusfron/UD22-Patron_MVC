@@ -19,10 +19,10 @@ import javax.swing.JComboBox;
 
 public class ViewFormProyecto extends JFrame{
 	private JPanel contentPane;
-	private JTextField txtFTitle;
-	private JTextField txtFDirector;
+	private JTextField txtFId;
+	private JTextField txtFNombre;
 	private JButton btnGuardar;
-	private JComboBox cmbCliId;
+	private JTextField txtFHoras;
 
 	public ViewFormProyecto() {
 		inicializar();
@@ -39,22 +39,19 @@ public class ViewFormProyecto extends JFrame{
 		JLabel lblWindowTitle = new JLabel("Videos");
 		lblWindowTitle.setFont(new Font("Tahoma", Font.PLAIN, 18));
 		
-		JLabel lblTitle = new JLabel("Title:");
-		lblTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblId = new JLabel("ID: ");
+		lblId.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel lblDirector = new JLabel("Director:");
-		lblDirector.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		JLabel lblNombre = new JLabel("Nombre: ");
+		lblNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		
-		JLabel lblClientId = new JLabel("Client id:");
-		lblClientId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFId = new JTextField();
+		txtFId.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFId.setColumns(10);
 		
-		txtFTitle = new JTextField();
-		txtFTitle.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtFTitle.setColumns(10);
-		
-		txtFDirector = new JTextField();
-		txtFDirector.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		txtFDirector.setColumns(10);
+		txtFNombre = new JTextField();
+		txtFNombre.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFNombre.setColumns(10);
 		
 		btnGuardar = new JButton("Guardar");
 		btnGuardar.setFont(new Font("Tahoma", Font.PLAIN, 18));
@@ -62,35 +59,40 @@ public class ViewFormProyecto extends JFrame{
 		JLabel lblError = new JLabel("");
 		lblError.setForeground(Color.RED);
 		
-		cmbCliId = new JComboBox();
+		JLabel lblHoras = new JLabel("Horas:");
+		lblHoras.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		
+		txtFHoras = new JTextField();
+		txtFHoras.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		txtFHoras.setColumns(10);
 		GroupLayout groupLayout = new GroupLayout(getContentPane());
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.TRAILING)
 				.addGroup(groupLayout.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-						.addGroup(groupLayout.createSequentialGroup()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addComponent(lblWindowTitle)
-							.addContainerGap(640, Short.MAX_VALUE))
-						.addGroup(groupLayout.createSequentialGroup()
+							.addContainerGap(639, Short.MAX_VALUE))
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
 								.addComponent(lblError)
 								.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 110, GroupLayout.PREFERRED_SIZE))
 							.addGap(88))
-						.addGroup(groupLayout.createSequentialGroup()
+						.addGroup(Alignment.TRAILING, groupLayout.createSequentialGroup()
 							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING)
-								.addGroup(groupLayout.createSequentialGroup()
-									.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-									.addPreferredGap(ComponentPlacement.RELATED)
-									.addComponent(cmbCliId, GroupLayout.PREFERRED_SIZE, 179, GroupLayout.PREFERRED_SIZE))
 								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addComponent(lblDirector, GroupLayout.DEFAULT_SIZE, 65, Short.MAX_VALUE)
+									.addComponent(lblHoras, GroupLayout.PREFERRED_SIZE, 64, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED, 69, Short.MAX_VALUE)
+									.addComponent(txtFHoras, GroupLayout.PREFERRED_SIZE, 178, GroupLayout.PREFERRED_SIZE))
+								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
+									.addComponent(lblNombre, GroupLayout.DEFAULT_SIZE, 64, Short.MAX_VALUE)
 									.addGap(69)
-									.addComponent(txtFDirector, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE))
+									.addComponent(txtFNombre, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE))
 								.addGroup(Alignment.LEADING, groupLayout.createSequentialGroup()
-									.addComponent(lblTitle, GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
+									.addComponent(lblId, GroupLayout.DEFAULT_SIZE, 66, Short.MAX_VALUE)
 									.addGap(67)
-									.addComponent(txtFTitle, GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
+									.addComponent(txtFId, GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)))
 							.addGap(380))))
 		);
 		groupLayout.setVerticalGroup(
@@ -100,28 +102,30 @@ public class ViewFormProyecto extends JFrame{
 					.addComponent(lblWindowTitle)
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtFTitle, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblTitle, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(txtFId, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE)
+						.addComponent(lblId, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
-						.addComponent(lblDirector, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtFDirector, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
+						.addComponent(lblNombre, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtFNombre, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
-					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(cmbCliId)
-						.addComponent(lblClientId, GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lblHoras, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE)
+						.addComponent(txtFHoras, GroupLayout.PREFERRED_SIZE, 23, GroupLayout.PREFERRED_SIZE))
 					.addGap(141)
 					.addComponent(btnGuardar, GroupLayout.PREFERRED_SIZE, 39, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addComponent(lblError)
-					.addContainerGap(59, Short.MAX_VALUE))
+					.addContainerGap(56, Short.MAX_VALUE))
 		);
 		getContentPane().setLayout(groupLayout);
 	}
 	
-	public void form(ModelProyecto video) {
-		txtFTitle.setText(video.getTitle());
-		txtFDirector.setText(video.getDirector());
+	public void form(ModelProyecto proyecto) {
+		txtFId.setText(proyecto.getId());
+		txtFId.setEditable(false);
+		txtFNombre.setText(proyecto.getNombre());
+		txtFHoras.setText(String.valueOf(proyecto.getHoras()));
 		//txtFClientId.setText(Integer.toString(video.getCli_id()) );
 	}
 	
@@ -130,16 +134,16 @@ public class ViewFormProyecto extends JFrame{
 		return btnGuardar;
 	}
 
-	public String getTxtFTitle() {
-		return txtFTitle.getText();
+	public JTextField getTxtFId() {
+		return txtFId;
 	}
 
-	public String getTxtFDirector() {
-		return txtFDirector.getText();
+	public JTextField getTxtFNombre() {
+		return txtFNombre;
 	}
 
-	public JComboBox getCmbCliId() {
-		return cmbCliId;
+	public JTextField getTxtFHoras() {
+		return txtFHoras;
 	}
-	
+
 }
