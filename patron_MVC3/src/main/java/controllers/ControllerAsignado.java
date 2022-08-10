@@ -20,7 +20,7 @@ public class ControllerAsignado {
 	public ControllerAsignado (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
-		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
+		viewTable.addListenerBtnEditar(new ListenerEditarAsignado(viewTable));
 		viewTable.addListenerBtnBorrar(new ListenerBorrarAsignado(viewTable));
 		viewTable.addListenerBtnCrear(new ListenerCrearAsignado(viewTable));
 		viewTable.addListenerBtnCambiar(new ListenerCambiarAsignado(viewTable));
@@ -61,19 +61,19 @@ public class ControllerAsignado {
 		
 		for(int i = 0; i < asignados.size(); i++) {
 			viewTable.getTable().getModel().setValueAt(Integer.toString(asignados.get(i).getId()) , i, 0);
-			viewTable.getTable().getModel().setValueAt(asignados.get(i).getTitle(), i, 1);
-			viewTable.getTable().getModel().setValueAt(asignados.get(i).getDirector(), i, 2);
+			viewTable.getTable().getModel().setValueAt(asignados.get(i).getCientifico(), i, 1);
+			viewTable.getTable().getModel().setValueAt(asignados.get(i).getProyecto(), i, 2);
 		}
 	}
 
 }
 
-class ListenerEditarVideos implements ActionListener {
+class ListenerEditarAsignado implements ActionListener {
 	
 	ViewTable viewTable;
 	
 	
-	public ListenerEditarVideos(ViewTable viewTable) {
+	public ListenerEditarAsignado(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -84,7 +84,7 @@ class ListenerEditarVideos implements ActionListener {
 			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
 			viewTable.setVisible(false);
-			ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
+			ControllerFormAsignado controllerFormAsignado = new ControllerFormAsignado(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
 		}
 		
 	}
