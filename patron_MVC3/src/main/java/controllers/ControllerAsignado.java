@@ -44,7 +44,7 @@ public class ControllerAsignado {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelAsignado> asignados = DBConection.getValuesAsignado();
+		ArrayList<ModelAsignado> asignados = DBConection.getValuesAsignadoA();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[asignados.size()][2] ,
 				new String[] {

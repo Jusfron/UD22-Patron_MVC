@@ -144,7 +144,7 @@ public class DBConection {
 			
 			while(resultSet.next()) {
 				ModelCientifico cientifico=new ModelCientifico();
-				cientifico.setId(resultSet.getString(1));
+				cientifico.setDni(resultSet.getString(1));
 				cientifico.setNombre(resultSet.getString(2));
 				cientificos.add(cientifico);
 			}
@@ -208,8 +208,8 @@ public class DBConection {
 			while(resultSet.next()) {
 				ModelAsignado asignado=new ModelAsignado();
 				asignado.setId(resultSet.getInt(1));
-				asignado.setDniCientifico(resultSet.getString(2));
-				asignado.setIdProyecto(resultSet.getString(3));
+				asignado.setCientifico(resultSet.getString(2));
+				asignado.setProyecto(resultSet.getString(3));
 				asignados.add(asignado);
 			}
 			
@@ -376,8 +376,8 @@ public class DBConection {
 			resultSet = st.executeQuery(querySl);		
 			resultSet.next();				
 			asignado.setId(resultSet.getInt(1));
-			asignado.setDniCientifico(resultSet.getString(2));
-			asignado.setidProyecto(resultSet.getString(3));
+			asignado.setCientifico(resultSet.getString(2));
+			asignado.setProyecto(resultSet.getString(3));
 			
 			closeConnection();
 			
