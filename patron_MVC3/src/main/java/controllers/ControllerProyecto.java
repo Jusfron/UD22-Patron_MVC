@@ -148,8 +148,8 @@ class ListenerCambiarProyecto implements ActionListener {
 		viewTable.setVisible(false);
 		viewTable.dispose();
 		ViewTable viewTablenew = new ViewTable();
-		ControllerCientificos controllerCliente = new ControllerCientificos(viewTablenew);
-		controllerCliente.startView();
+		ControllerAsignado controllerAsignado = new ControllerAsignado(viewTablenew);
+		controllerAsignado.startView();
 		viewTablenew.setTitle("Cliente");
 		viewTablenew.setLblTitle("Cliente");
 	}
