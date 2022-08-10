@@ -21,10 +21,10 @@ public class ControllerCientificos {
 	public ControllerCientificos (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
-		viewTable.addListenerBtnEditar(new ListenerEditarCliente(viewTable));
-		viewTable.addListenerBtnBorrar(new ListenerBorrarCliente(viewTable));
-		viewTable.addListenerBtnCrear(new ListenerCrearCliente(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCambiarCliente(viewTable));
+		viewTable.addListenerBtnEditar(new ListenerEditarCientifico(viewTable));
+		viewTable.addListenerBtnBorrar(new ListenerBorrarCientifico(viewTable));
+		viewTable.addListenerBtnCrear(new ListenerCrearCientifico(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarCientifico(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -37,7 +37,7 @@ public class ControllerCientificos {
 	}
 	
 	public void startView() {
-		viewTable.setTitle("Cliente");
+		viewTable.setTitle("Cientificos");
 		viewTable.setLocationRelativeTo(null);
 		viewTable.setVisible(true);
 		
@@ -46,11 +46,11 @@ public class ControllerCientificos {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelCientifico> clientes = DBConection.getValuesClientes();
+		ArrayList<ModelCientifico> Cientifico = DBConection.getValuesCientifico();
 		viewTable.getTable().setModel((new DefaultTableModel(
-				new Object[clientes.size()][6] ,
+				new Object[Cientifico.size()][6] ,
 				new String[] {
-					"id", "nombre", "apellido", "direccion", "dni", "fecha"
+					"dni", "nomApels"
 				}) {
 
 			    @Override
@@ -60,60 +60,57 @@ public class ControllerCientificos {
 			    }
 			}));
 		
-		for(int i = 0; i < clientes.size(); i++) {
-			viewTable.getTable().getModel().setValueAt(Integer.toString(clientes.get(i).getId()) , i, 0);
-			viewTable.getTable().getModel().setValueAt(clientes.get(i).getNombre(), i, 1);
-			viewTable.getTable().getModel().setValueAt(clientes.get(i).getApellido(), i, 2);
-			viewTable.getTable().getModel().setValueAt(clientes.get(i).getDireccion(), i, 3);
-			viewTable.getTable().getModel().setValueAt(clientes.get(i).getDni(), i, 4);
-			viewTable.getTable().getModel().setValueAt(clientes.get(i).getDate(), i, 5);
+		for(int i = 0; i < Cientifico.size(); i++) {
+			viewTable.getTable().getModel().setValueAt(Integer.toString(Cientifico.get(i).getDNI()) , i, 0);
+			viewTable.getTable().getModel().setValueAt(Cientifico.get(i).getNomApels(), i, 1);
+
 		}
 	}
 
 }
 
-class ListenerEditarCliente implements ActionListener {
+class ListenerEditarCientifico implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewCientifico;
 	
-	public ListenerEditarCliente(ViewTable viewCliente) {
+	public ListenerEditarCientifico(ViewTable viewCientifico) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewCientifico = viewCientifico;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(viewCliente.getTable().getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		if(viewCientifico.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 		} else {
-			viewCliente.setVisible(false);
-			ControllerFormCientificos controllerFormCliente = new ControllerFormCientificos(Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), viewCliente);
+			viewCientifico.setVisible(false);
+			ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos(Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), viewCientifico);
 		}
 		
 	}
 	
 }
 
-class ListenerBorrarCliente implements ActionListener {
+class ListenerBorrarCientifico implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewCientifico;
 	
-	public ListenerBorrarCliente(ViewTable viewCliente) {
+	public ListenerBorrarCientifico(ViewTable viewCientifico) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewCientifico = viewCientifico;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if(viewCliente.getTable().getSelectedRow() == -1) {
-			JOptionPane.showMessageDialog(viewCliente, "No row selected");
+		if(viewCientifico.getTable().getSelectedRow() == -1) {
+			JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 		} else {
-			if(viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), viewCliente.getTable().getSelectedColumn()) == "") {
-				JOptionPane.showMessageDialog(viewCliente, "No row selected");
+			if(viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), viewCientifico.getTable().getSelectedColumn()) == "") {
+				JOptionPane.showMessageDialog(viewCientifico, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewCliente.getTable().getModel().getValueAt(viewCliente.getTable().getSelectedRow(), 0) )), "Cliente")  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewCientifico.getTable().getModel().getValueAt(viewCientifico.getTable().getSelectedRow(), 0) )), "Cientifico")  ;
 				//Update table
-				ControllerCientificos.fillTable(viewCliente);
+				ControllerCientificos.fillTable(viewCientifico);
 				
 			}
 		}
@@ -121,32 +118,33 @@ class ListenerBorrarCliente implements ActionListener {
 	
 }
 
-class ListenerCrearCliente implements ActionListener {
+class ListenerCrearCientifico implements ActionListener {
 	
-	ViewTable viewCliente;
+	ViewTable viewCientifico;
 	
-	public ListenerCrearCliente(ViewTable viewCliente) {
+	public ListenerCrearCientifico(ViewTable viewCientifico) {
 		super();
-		this.viewCliente = viewCliente;
+		this.viewCientifico = viewCientifico;
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		viewCliente.setVisible(false);
-		ControllerFormCientificos controllerFormCliente = new ControllerFormCientificos(viewCliente);
+		viewCientifico.setVisible(false);
+		ControllerFormCientificos controllerFormCientifico = new ControllerFormCientificos(viewCientifico);
 	}
 	
 }
 
-class ListenerCambiarCliente implements ActionListener {
+class ListenerCambiarCientifico implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerCambiarCliente(ViewTable viewTable) {
+	public ListenerCambiarCientifico(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
 
+	//??
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
