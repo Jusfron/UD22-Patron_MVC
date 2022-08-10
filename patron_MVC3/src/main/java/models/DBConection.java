@@ -225,14 +225,18 @@ public class DBConection {
 	// Function for list all the ids of the selected table
 	public static ArrayList<String> getId(String table) {
 		ArrayList<String> id = new ArrayList<>();
-		
+		String querySl;
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
+			if(table.equals("Ceintificos")) {
+				querySl = "SELECT dni FROM "+table+";";
+			}else {
+				querySl = "SELECT id FROM "+table+";";
+			}
 			
-			String querySl = "SELECT id FROM "+table+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
