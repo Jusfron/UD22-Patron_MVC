@@ -10,8 +10,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 import models.DBConection;
-import models.ModelCientifico;
-import models.ModelProyecto;
+import models.ModelAsignado;
 import views.ViewTable;
 
 public class ControllerAsignado {
@@ -20,10 +19,10 @@ public class ControllerAsignado {
 	public ControllerAsignado (ViewTable viewTable) {
 		this.viewTable = viewTable;
 		
-		viewTable.addListenerBtnEditar(new ListenerEditarVideos(viewTable));
-		viewTable.addListenerBtnBorrar(new ListenerBorrarVideos(viewTable));
-		viewTable.addListenerBtnCrear(new ListenerCrearVideos(viewTable));
-		viewTable.addListenerBtnCambiar(new ListenerCambiarVideos(viewTable));
+		viewTable.addListenerBtnEditar(new ListenerEditarAsignado(viewTable));
+		viewTable.addListenerBtnBorrar(new ListenerBorrarAsignado(viewTable));
+		viewTable.addListenerBtnCrear(new ListenerCrearAsignado(viewTable));
+		viewTable.addListenerBtnCambiar(new ListenerCambiarAsignado(viewTable));
 		
 		viewTable.addComponentListener(new ComponentAdapter() {
 			   public void componentHidden(ComponentEvent e) {
@@ -36,7 +35,7 @@ public class ControllerAsignado {
 	}
 	
 	public void startView() {
-		viewTable.setTitle("Videos");
+		viewTable.setTitle("Asignaciones");
 		viewTable.setLocationRelativeTo(null);
 		viewTable.setVisible(true);
 		
@@ -45,11 +44,11 @@ public class ControllerAsignado {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelProyecto> videos = DBConection.getValuesVideos();
+		ArrayList<ModelAsignado> asignados = DBConection.getValuesAsignado();
 		viewTable.getTable().setModel((new DefaultTableModel(
-				new Object[videos.size()][4] ,
+				new Object[asignados.size()][2] ,
 				new String[] {
-					"id", "title", "director", "cli_id"
+					"id","Cientifico", "Proyecto"
 				}) {
 
 			    @Override
@@ -59,22 +58,21 @@ public class ControllerAsignado {
 			    }
 			}));
 		
-		for(int i = 0; i < videos.size(); i++) {
-			viewTable.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getTitle(), i, 1);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getDirector(), i, 2);
-			viewTable.getTable().getModel().setValueAt(videos.get(i).getCli_id(), i, 3);
+		for(int i = 0; i < asignados.size(); i++) {
+			viewTable.getTable().getModel().setValueAt(Integer.toString(asignados.get(i).getId()) , i, 0);
+			viewTable.getTable().getModel().setValueAt(asignados.get(i).getCientifico(), i, 1);
+			viewTable.getTable().getModel().setValueAt(asignados.get(i).getProyecto(), i, 2);
 		}
 	}
 
 }
 
-class ListenerEditarVideos implements ActionListener {
+class ListenerEditarAsignado implements ActionListener {
 	
 	ViewTable viewTable;
 	
 	
-	public ListenerEditarVideos(ViewTable viewTable) {
+	public ListenerEditarAsignado(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -85,18 +83,18 @@ class ListenerEditarVideos implements ActionListener {
 			JOptionPane.showMessageDialog(viewTable, "No row selected");
 		} else {
 			viewTable.setVisible(false);
-			ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
+			ControllerFormAsignado controllerFormAsignado = new ControllerFormAsignado(Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), viewTable);
 		}
 		
 	}
 	
 }
 
-class ListenerBorrarVideos implements ActionListener {
+class ListenerBorrarAsignado implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerBorrarVideos(ViewTable viewTable) {
+	public ListenerBorrarAsignado(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -109,7 +107,7 @@ class ListenerBorrarVideos implements ActionListener {
 			if(viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), viewTable.getTable().getSelectedColumn()) == "") {
 				JOptionPane.showMessageDialog(viewTable, "No row selected");
 			} else {
-				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Videos")  ;
+				DBConection.deleteData( Integer.parseInt((String)( viewTable.getTable().getModel().getValueAt(viewTable.getTable().getSelectedRow(), 0) )), "Asignado_a")  ;
 				//Update table
 				ControllerAsignado.fillTable(viewTable);
 				
@@ -119,11 +117,11 @@ class ListenerBorrarVideos implements ActionListener {
 	
 }
 
-class ListenerCrearVideos implements ActionListener {
+class ListenerCrearAsignado implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerCrearVideos(ViewTable viewTable) {
+	public ListenerCrearAsignado(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -131,16 +129,16 @@ class ListenerCrearVideos implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		viewTable.setVisible(false);
-		ControllerFormProyecto controllerFormVideos = new ControllerFormProyecto(viewTable);
+		ControllerFormAsignado controllerFormAsignado = new ControllerFormAsignado(viewTable);
 	}
 	
 }
 
-class ListenerCambiarVideos implements ActionListener {
+class ListenerCambiarAsignado implements ActionListener {
 	
 	ViewTable viewTable;
 	
-	public ListenerCambiarVideos(ViewTable viewTable) {
+	public ListenerCambiarAsignado(ViewTable viewTable) {
 		super();
 		this.viewTable = viewTable;
 	}
@@ -151,10 +149,10 @@ class ListenerCambiarVideos implements ActionListener {
 		viewTable.setVisible(false);
 		viewTable.dispose();
 		ViewTable viewTablenew = new ViewTable();
-		ControllerCientificos controllerCliente = new ControllerCientificos(viewTablenew);
-		controllerCliente.startView();
-		viewTablenew.setTitle("Cliente");
-		viewTablenew.setLblTitle("Cliente");
+		ControllerCientificos controllerCientificos = new ControllerCientificos(viewTablenew);
+		controllerCientificos.startView();
+		viewTablenew.setTitle("Cientificos");
+		viewTablenew.setLblTitle("Cientificos");
 	}
 	
 }
