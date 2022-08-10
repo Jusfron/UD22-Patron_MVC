@@ -1,7 +1,7 @@
 package models;
 
 public class ModelProyecto {
-	private int id;
+	private String id;
 	private String nombre;
 	private int horas;
 	
@@ -9,7 +9,7 @@ public class ModelProyecto {
 	public ModelProyecto() {
 	}
 // constructor with all parameters
-	public ModelProyecto(int id, String nombre, int horas) {
+	public ModelProyecto(String id, String nombre, int horas) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -17,11 +17,11 @@ public class ModelProyecto {
 	}
 	
 //	Getters and setters
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 	
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 	

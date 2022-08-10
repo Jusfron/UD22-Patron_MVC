@@ -41,8 +41,8 @@ public class DBConection {
 		}
 	}
 	
-	// Function to insert records into the table "Cliente".
-	public static void insertData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
+	// Function to insert records into the table "Cientificos".
+	public static void insertData(String dni, String nomApels) {
 		
 		try {
 			connection();
@@ -51,7 +51,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="INSERT INTO Cliente VALUES ("+id+",'"+nombre+"','"+apellido+"','"+direccion+"',"+dni+",'"+fecha+"');";
+			sql="INSERT INTO Cientificos VALUES ("+dni+",'"+nomApels+"');";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -63,8 +63,8 @@ public class DBConection {
 		
 	}
 	
-	// Function to insert records into the table "Videos".
-	public static void insertData(int id, String title, String director, int clientId) {
+	// Function to insert records into the table "Proyecto".
+	public static void insertData(String id, String nombre, int horas) {
 		try {
 			connection();
 			String sql="USE "+db+";";
@@ -72,7 +72,27 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="INSERT INTO Videos VALUES ("+id+",'"+title+"','"+director+"','"+clientId+"');";
+			sql="INSERT INTO Proyecto VALUES ("+id+",'"+nombre+"','"+horas+"');";
+			Statement st = connection.createStatement();
+			st.executeUpdate(sql);
+			closeConnection();
+			System.out.println("Registro entrado");
+		} catch (SQLException e) {
+			System.out.println("Error al almacendar los datos");
+			e.printStackTrace();
+		}
+	}
+	
+	// Function to insert records into the table "AsignadoA".
+	public static void insertData(int id, String dniCientifico, String idProyecto) {
+		try {
+			connection();
+			String sql="USE "+db+";";
+			Statement stdb;
+			stdb = connection.createStatement();
+			stdb.executeUpdate(sql);
+			
+			sql="INSERT INTO AsignadoA VALUES ("+id+",'"+dniCientifico+"','"+idProyecto+"');";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -107,9 +127,9 @@ public class DBConection {
 		
 	}
 	
-	// Function for list all the records of the table "Client"
-	public static ArrayList<ModelCientifico> getValuesClientes() {
-		ArrayList<ModelCientifico> clientes = new ArrayList<>();
+	// Function for list all the records of the table "Cientificos"
+	public static ArrayList<ModelCientifico> getValuesCientificos() {
+		ArrayList<ModelCientifico> cientificos = new ArrayList<>();
 		
 		try {
 			connection();
@@ -117,20 +137,16 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cliente;";
+			String querySl = "SELECT * FROM Cientificos;";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-				ModelCientifico cliente=new ModelCientifico();
-					cliente.setId(resultSet.getInt(1));
-					cliente.setNombre(resultSet.getString(2));
-					cliente.setApellido(resultSet.getString(3));
-					cliente.setDireccion(resultSet.getString(4));
-					cliente.setDni(resultSet.getInt(5));
-					cliente.setDate(String.valueOf(resultSet.getDate(6)));
-					clientes.add(cliente);
+				ModelCientifico cientifico=new ModelCientifico();
+				cientifico.setId(resultSet.getString(1));
+				cientifico.setNombre(resultSet.getString(2));
+				cientificos.add(cientifico);
 			}
 			
 			closeConnection();
@@ -138,13 +154,13 @@ public class DBConection {
 			System.out.println(e.getMessage());
 		}
 		
-		return clientes;
+		return cientificos;
 		
 	}
 	
-	// Function for list all de records of the table "Video"
-	public static ArrayList<ModelProyecto> getValuesVideos() {
-		ArrayList<ModelProyecto> videos = new ArrayList<>();
+	// Function for list all de records of the table "Proyecto"
+	public static ArrayList<ModelProyecto> getValuesProyecto() {
+		ArrayList<ModelProyecto> proyectos = new ArrayList<>();
 		
 		try {
 			connection();
@@ -152,18 +168,17 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Videos;";
+			String querySl = "SELECT * FROM Proyecto;";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-				ModelProyecto video=new ModelProyecto();
-				video.setId(resultSet.getInt(1));
-				video.setTitle(resultSet.getString(2));
-				video.setDirector(resultSet.getString(3));
-				video.setCli_id(resultSet.getInt(4));
-				videos.add(video);
+				ModelProyecto proyecto=new ModelProyecto();
+				proyecto.setId(resultSet.getString(1));
+				proyecto.setNombre(resultSet.getString(2));
+				proyecto.setHoras(resultSet.getInt(3));
+				proyectos.add(proyecto);
 			}
 			
 			closeConnection();
@@ -171,13 +186,13 @@ public class DBConection {
 			System.out.println(e.getMessage());
 		}
 		
-		return videos;
+		return proyectos;
 		
 	}
 	
-	// Function for list all the ids of the table "Client"
-	public static ArrayList<Integer> getClientsId() {
-		ArrayList<Integer> clientesId = new ArrayList<>();
+	// Function for list all de records of the table "AsignadoA"
+	public static ArrayList<ModelAsignado> getValuesAsignadoA() {
+		ArrayList<ModelAsignado> asignados = new ArrayList<>();
 		
 		try {
 			connection();
@@ -185,13 +200,17 @@ public class DBConection {
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT id FROM Cliente;";
+			String querySl = "SELECT * FROM AsignadoA;";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);
 			
 			while(resultSet.next()) {
-					clientesId.add(resultSet.getInt(1));
+				ModelAsignado asignado=new ModelAsignado();
+				asignado.setId(resultSet.getInt(1));
+				asignado.setDniCientifico(resultSet.getString(2));
+				asignado.setIdProyecto(resultSet.getString(3));
+				asignados.add(asignado);
 			}
 			
 			closeConnection();
@@ -199,12 +218,40 @@ public class DBConection {
 			System.out.println(e.getMessage());
 		}
 		
-		return clientesId;
+		return asignados;
+		
+	}
+	
+	// Function for list all the ids of the selected table
+	public static ArrayList<String> getId(String table) {
+		ArrayList<String> id = new ArrayList<>();
+		
+		try {
+			connection();
+			String queryDB = "USE " + db + ";";
+			Statement stdb = connection.createStatement();
+			stdb.executeUpdate(queryDB);
+			
+			String querySl = "SELECT id FROM "+table+";";
+			Statement st = connection.createStatement();
+			ResultSet resultSet;
+			resultSet = st.executeQuery(querySl);
+			
+			while(resultSet.next()) {
+				id.add(resultSet.getString(1));
+			}
+			
+			closeConnection();
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		return id;
 		
 	}
 
-	// Function to upadate records into the table "Cliente".
-	public static void updateData(int id, String nombre, String apellido, String direccion, String dni, String fecha) {
+	// Function to upadate records into the table "Cientificos".
+	public static void updateData(String dni, String nomApels) {
 		try {
 			connection();
 			String sql="USE "+db+";";
@@ -212,7 +259,7 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Cliente SET nombre = '"+nombre+"', apellido = '"+apellido+"',direccion = '"+direccion+"',dni = "+dni+",fecha = '"+fecha+"' WHERE id = "+id+";";
+			sql="UPDATE Cientificos SET dni = '"+dni+"', NomApels = '"+nomApels+"' WHERE dni = "+dni+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -223,8 +270,8 @@ public class DBConection {
 		}
 	}
 	
-	// Function to insert the records into the table "Cliente".
-	public static void updateData(int id, String title, String director, int clientId) {
+	// Function to upadate records into the table "Proyectos".
+	public static void updateData(String id, String nombre, int horas) {
 		try {
 			connection();
 			String sql="USE "+db+";";
@@ -232,7 +279,27 @@ public class DBConection {
 			stdb = connection.createStatement();
 			stdb.executeUpdate(sql);
 			
-			sql="UPDATE Videos SET id = '"+id+"', title = '"+title+"',director = '"+director+"',cli_id = "+clientId+" WHERE id = "+id+";";
+			sql="UPDATE Proyectos SET id = '"+id+"', Nombre = '"+nombre+"',Horas = '"+horas+"' WHERE id = "+id+";";
+			Statement st = connection.createStatement();
+			st.executeUpdate(sql);
+			closeConnection();
+			System.out.println("Registro actualizado");
+		} catch (SQLException e) {
+			System.out.println("Error al almacendar los datos");
+			e.printStackTrace();
+		}
+	}
+	
+	// Function to upadate records into the table "AsignadoA".
+	public static void updateData(int id, String dniCientifico, String idProyecto) {
+		try {
+			connection();
+			String sql="USE "+db+";";
+			Statement stdb;
+			stdb = connection.createStatement();
+			stdb.executeUpdate(sql);
+			
+			sql="UPDATE AsignadoA SET id = '"+id+"', Cientifico = '"+dniCientifico+"', Proyecto = '"+idProyecto+"' WHERE id = "+id+";";
 			Statement st = connection.createStatement();
 			st.executeUpdate(sql);
 			closeConnection();
@@ -244,59 +311,80 @@ public class DBConection {
 	}
 
 	// Function to get the specified record from table "Client"
-	public static ModelCientifico getValueCliente(int id) {
-		ModelCientifico cliente=new ModelCientifico();
+	public static ModelCientifico getValueCientifico(String dni) {
+		ModelCientifico cientifico=new ModelCientifico();
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Cliente where id="+id+";";
+			String querySl = "SELECT * FROM Cientifico where dni="+dni+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);			
 			
 			resultSet.next();
-			cliente.setId(resultSet.getInt(1));
-			cliente.setNombre(resultSet.getString(2));
-			cliente.setApellido(resultSet.getString(3));
-			cliente.setDireccion(resultSet.getString(4));
-			cliente.setDni(resultSet.getInt(5));
-			cliente.setDate(String.valueOf(resultSet.getDate(6)));		
+			cientifico.setId(resultSet.getString(1));
+			cientifico.setNomApels(resultSet.getString(2));		
 			closeConnection();
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return cliente;
+		return cientifico;
 	}
 
 	// Function to get the specified record from table "Videos"
-	public static ModelProyecto getValueVideo(int id) {
-		ModelProyecto video =new ModelProyecto();
+	public static ModelProyecto getValueProyecto(String id) {
+		ModelProyecto proyecto =new ModelProyecto();
 		try {
 			connection();
 			String queryDB = "USE " + db + ";";
 			Statement stdb = connection.createStatement();
 			stdb.executeUpdate(queryDB);
 			
-			String querySl = "SELECT * FROM Videos where id="+id+";";
+			String querySl = "SELECT * FROM Proyecto where id="+id+";";
 			Statement st = connection.createStatement();
 			ResultSet resultSet;
 			resultSet = st.executeQuery(querySl);		
 			resultSet.next();				
-			video.setId(resultSet.getInt(1));
-			video.setTitle(resultSet.getString(2));
-			video.setDirector(resultSet.getString(3));
-			video.setCli_id(resultSet.getInt(4));
+			proyecto.setId(resultSet.getString(1));
+			proyecto.setNombre(resultSet.getString(2));
+			proyecto.setHoras(resultSet.getInt(3));
 			
 			closeConnection();
 			
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 		}
-		return video;
+		return proyecto;
+	}
+	
+	// Function to get the specified record from table "Videos"
+	public static ModelAsignado getValueAsignadoA(int id) {
+		ModelAsignado asignado =new ModelAsignado();
+		try {
+			connection();
+			String queryDB = "USE " + db + ";";
+			Statement stdb = connection.createStatement();
+			stdb.executeUpdate(queryDB);
+			
+			String querySl = "SELECT * FROM Proyecto where id="+id+";";
+			Statement st = connection.createStatement();
+			ResultSet resultSet;
+			resultSet = st.executeQuery(querySl);		
+			resultSet.next();				
+			asignado.setId(resultSet.getInt(1));
+			asignado.setDniCientifico(resultSet.getString(2));
+			asignado.setidProyecto(resultSet.getString(3));
+			
+			closeConnection();
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		return asignado;
 	}
 	
 	// Function to get the last id from any table

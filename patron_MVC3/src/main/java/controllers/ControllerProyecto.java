@@ -44,7 +44,7 @@ public class ControllerProyecto {
 	
 	@SuppressWarnings("serial")
 	public static void fillTable(ViewTable viewTable) {
-		ArrayList<ModelProyecto> videos = DBConection.getValuesVideos();
+		ArrayList<ModelProyecto> videos = DBConection.getValuesProyecto();
 		viewTable.getTable().setModel((new DefaultTableModel(
 				new Object[videos.size()][4] ,
 				new String[] {
@@ -59,7 +59,7 @@ public class ControllerProyecto {
 			}));
 		
 		for(int i = 0; i < videos.size(); i++) {
-			viewTable.getTable().getModel().setValueAt(Integer.toString(videos.get(i).getId()) , i, 0);
+			viewTable.getTable().getModel().setValueAt((videos.get(i).getId()) , i, 0);
 			viewTable.getTable().getModel().setValueAt(videos.get(i).getNombre(), i, 1);
 			viewTable.getTable().getModel().setValueAt(videos.get(i).getHoras(), i, 2);
 		}
